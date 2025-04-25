@@ -187,28 +187,6 @@ footer ul li a:hover {
     color: #f39c12;  
 }
 
-/* Media Queries per smartphone */
-@media (max-width: 768px) {
-    .content {
-        flex-direction: column;
-        gap: 20px;
-    }
-    .col-2 {
-        width: 100%;
-    }
-    h2 {
-        font-size: 1.5em;  
-    }
-    .download-btn {
-        font-size: 1.1em;  
-        padding: 12px 30px;
-    }
-    .google-form-btn {
-        font-size: 1.1em;
-        padding: 12px 25px;
-    }
-}
-
 /* Focus per i pulsanti */
 .download-btn:focus, .google-form-btn:focus {
     outline: 3px solid #3498db;
@@ -243,4 +221,25 @@ footer ul li a:hover {
 /* Effetto Hover */
 #back-to-top-btn:hover {
     background-color: #0056b3; 
+}
+/* Media Queries per smartphone */
+@media (max-width: 768px) {
+    .content {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .col-2 {
+        width: 100%;
+    }
+    h2 {
+        font-size: 1.5em;  
+    }
+    .download-btn {
+        font-size: 1.1em;  
+        padding: 12px 30px;
+    }
+    .google-form-btn {
+        font-size: 1.1em;
+        padding: 12px 25px;
+    }
 }
