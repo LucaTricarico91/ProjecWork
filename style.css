@@ -64,14 +64,6 @@ p {
     margin-bottom: 15px;
 }
 
-/* Immagine introduttiva */
-.intro-image {
-    width: 100%;
-    margin-top: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
 /* Campo input per nome azienda */
 #nome-azienda {
     width: 100%;
