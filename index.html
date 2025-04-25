@@ -17,7 +17,7 @@
     <meta property="og:url" content="https://lucatricarico91.github.io/ProjecWork/">
 
    <script> 
-    //function per il download e dichiarazione delle variabili
+    //function per il download e dichiarazione delle variabili, ciclo if
     function enableDownload() {
         var nomeAzienda = document.getElementById("nome-azienda").value.trim();
         var downloadBtn = document.getElementById("download-btn");
@@ -81,13 +81,13 @@
                 <input type="text" id="nome-azienda" name="nome-azienda" onkeyup="enableDownload()">
                 <span id="loading-text" style="display: none;" aria-live="polite">Loading...</span>
                 <div class="center-button">
-                    <button id="download-btn" class="download-btn" onclick="downloadPDF()" disabled>Download</button>
+                    <button id="download-btn" class="download-btn" onclick="downloadPDF()" disabled>📥 Download</button>
                 </div>
             </section>
             <section class="google-form">
                    <div class="center-button">
                       <a href="https://forms.gle/QTFNaUG1ViP7fc279" target="_blank" class="google-form-btn">
-                        <span class="icon">📝</span>Lascia un feedback
+                        <span class="icon">📝</span>Lasciaci un Feedback
                       </a>
                    </div>
             </section>
