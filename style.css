@@ -21,7 +21,7 @@ body {
 /* Intestazione*/
 header {
     background-color: rgba(44, 62, 80, 0.7);
-    backdrop-filter: blur(5px); /* Aggiungi un effetto di sfocatura */
+    backdrop-filter: blur(5px); 
     color: #fff;
     padding: 40px 0;
     text-align: center;
@@ -29,10 +29,6 @@ header {
 header .container {
     max-width: 1200px;
     margin: 0 auto;
-}
-header img {
-    max-width: 150px;
-    margin-top: 20px;
 }
 
 /* Contenuto principale */
