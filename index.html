@@ -42,11 +42,11 @@
             return;
         }
         // filePath del documento da scaricare
-        var filePath = "res/files/documento.pdf"; 
+        var filePath = "res/files/RISK_ASSESSMENT.pdf"; 
         // creazione link temporaneo per il download  
         var link = document.createElement("a"); 
         link.href = filePath;
-        link.setAttribute("download","RISKASSESSMENT.pdf"); 
+        link.setAttribute("download","RISK_ASSESSMENT.pdf"); 
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
