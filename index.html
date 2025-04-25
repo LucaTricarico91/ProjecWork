@@ -1,10 +1,11 @@
 <!DOCTYPE html>
+
 <html lang="it">
 <head> 
-    <!-- Dichiarazione dello file style.css -->
+    <!-- Dichiarazione dello style.ccs -->
     <link rel="stylesheet" href="style.css">
     <title>IL RISK ASSESSMENT NELL'ERA DIGITALE</title>
-    <!-- Meta Tag e Risoluzione per device -->
+    <!--Meta Tag e Risoluzione per device -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">  
     <meta name="description" content="Valutazione e Gestione del Rischio Aziendale Oggi: Un Imperativo Strategico! 
@@ -15,66 +16,43 @@
     <!-- URL della pagina web-->
     <meta property="og:url" content="https://lucatricarico91.github.io/ProjecWork/">
 
-    <script> 
-        // Funzione per il download e dichiarazione delle variabili, ciclo if
-        function enableDownload() {
-            var nomeAzienda = document.getElementById("nome-azienda").value.trim();
-            var downloadBtn = document.getElementById("download-btn");
-            var loadingText = document.getElementById("loading-text");
-            // Verifica condizione
-            if (nomeAzienda !== "") {
-                loadingText.style.display = "inline"; 
-                downloadBtn.setAttribute("disabled", "true");
-                setTimeout(function() {
-                    loadingText.style.display = "none"; 
-                    downloadBtn.removeAttribute("disabled"); 
-                }, 2000);
-            } else {
-                loadingText.style.display = "none";
-                downloadBtn.setAttribute("disabled", "true");
-            }
+   <script> 
+    //function per il download e dichiarazione delle variabili, ciclo if
+    function enableDownload() {
+        var nomeAzienda = document.getElementById("nome-azienda").value.trim();
+        var downloadBtn = document.getElementById("download-btn");
+        var loadingText = document.getElementById("loading-text");
+        // verifica condizione 
+        if (nomeAzienda !== "") {
+            loadingText.style.display = "inline"; 
+            downloadBtn.setAttribute("disabled", "true");
+            setTimeout(function() {
+                loadingText.style.display = "none"; 
+                downloadBtn.removeAttribute("disabled"); 
+            }, 2000);
+        } else {
+            loadingText.style.display = "none";
+            downloadBtn.setAttribute("disabled", "true");
         }
-
-        function downloadPDF() {
-            var nomeAzienda = document.getElementById("nome-azienda").value.trim();
-            if (!nomeAzienda) {
-                alert("Inserisci il nome della tua azienda");
-                return;
-            }
-
-            // Percorso del file PDF da scaricare
-            var filePath = "res/files/RISK_ASSESSMENT.pdf"; 
-
-            try {
-                // Creazione di un link temporaneo per il download
-                var link = document.createElement("a");
-                link.href = filePath;
-
-                // Verifica che il file esista prima di tentare il download
-                var xhr = new XMLHttpRequest();
-                xhr.open('HEAD', filePath, true); // Usa il metodo HEAD per verificare se il file esiste
-                xhr.onreadystatechange = function() {
-                    if (xhr.readyState === 4) {
-                        if (xhr.status === 200) {
-                            // Se il file esiste, avvia il download
-                            link.setAttribute("download", "RISK_ASSESSMENT.pdf");
-                            document.body.appendChild(link);
-                            link.click();
-                            document.body.removeChild(link);
-                        } else {
-                            // Se il file non esiste (errore 404), mostra un messaggio di errore
-                            alert("Errore: il file non è stato trovato.");
-                        }
-                    }
-                };
-                xhr.send();
-            } catch (error) {
-                // Gestisce altri eventuali errori
-                console.error("Si è verificato un errore durante il tentativo di scaricare il file:", error);
-                alert("Si è verificato un errore durante il download. Per favore, riprova più tardi.");
-            }
+    }
+    function downloadPDF() {
+        var nomeAzienda = document.getElementById("nome-azienda").value.trim();
+        if (!nomeAzienda) {
+            alert("Inserisci il nome della tua azienda");
+            return;
         }
-    </script>
+        // filePath del documento da scaricare
+        var filePath = "res/files/RISK_ASSESSMENT.pdf"; 
+        // creazione link temporaneo per il download  
+        var link = document.createElement("a"); 
+        link.href = filePath;
+        link.setAttribute("download","RISK_ASSESSMENT.pdf"); 
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+</script>
+    
 </head>
 <body class="body">
     <header>
@@ -88,18 +66,16 @@
         <div class="col-2">
             <section class="introduction">
                 <h2>INTRODUZIONE</h2>
-                <p>Il Risk Assessment: cos’è e perché è così importante nella strategia aziendale. 
-                   Il Risk assessment è un processo importante nella strategia di gestione del rischio di un'azienda: scopri le fasi, gli obiettivi e le azioni da intraprendere, scarica il documento.</p>
+                <p>La Valutazione del rischio o come meglio conosciuto Risk Assessment, è un processo importante nella strategia di gestione del rischio di un'azienda: scopri le fasi, gli obiettivi e le azioni da intraprendere, scarica il documento.</p>
                 <h2>CHE COS'E' IL RISK ASSESSMENT?</h2>
-                <p>La valutazione del rischio, meglio conosciuta come risk assessment, è l'identificazione dei pericoli che potrebbero avere un impatto negativo sulla capacità di un'organizzazione di condurre il proprio business.
-                   Queste valutazioni aiutano ad identificare i reali rischi aziendali e forniscono misure, processi e controlli per ridurre l'impatto di queste minacce sulle operazioni aziendali.</p>
+                <p>La valutazione del rischio, meglio conosciuta come risk assessment, è l'identificazione dei pericoli che potrebbero avere un impatto negativo sulla capacità di un'organizzazione di condurre il proprio business, queste valutazioni aiutano ad identificare i reali rischi aziendali e forniscono misure, processi e controlli per ridurre l'impatto di queste minacce sulle operazioni aziendali.</p>
             </section>
         </div>
 
         <div class="col-2">
             <section class="download">
-                <h2>INSERISCI QUI IL TUO NOME</h2>
-                <h2>CLICCA SU DOWNLOAD E SCARICA IL DOCUMENTO</h2>
+                <h2>- INSERISCI QUI IL TUO NOME -</h2>
+                <h2>CLICCA SUl PULSANTE DI DOWNLOAD E SCARICA IL DOCUMENTO</h2>
                 <input type="text" id="nome-azienda" name="nome-azienda" onkeyup="enableDownload()">
                 <span id="loading-text" style="display: none;" aria-live="polite">Loading...</span>
                 <div class="center-button">
@@ -107,11 +83,11 @@
                 </div>
             </section>
             <section class="google-form">
-                <div class="center-button">
-                    <a href="https://forms.gle/QTFNaUG1ViP7fc279" target="_blank" class="google-form-btn">
+                   <div class="center-button">
+                      <a href="https://forms.gle/QTFNaUG1ViP7fc279" target="_blank" class="google-form-btn">
                         <span class="icon">📝</span>Lascia un Feedback
-                    </a>
-                </div>
+                      </a>
+                   </div>
             </section>
         </div>
     </main>
@@ -126,25 +102,27 @@
             </ul>
         </div>
     </footer>
-    <!-- Bottone per la risalita della pagina -->
+   <!--bottone per la risalita della pagina -->
     <button onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" id="back-to-top-btn">⬆️</button>
-    <!-- Bottone per la risalita della pagina -->
+     <!--bottone per la risalita della pagina -->
     <script>
         const backToTopBtn = document.getElementById("back-to-top-btn");
         window.addEventListener("scroll", function () {
-            const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+          const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            
             if (scrollTop > 100) {
-                backToTopBtn.classList.add("show");
+              backToTopBtn.classList.add("show");
             } else {
-                backToTopBtn.classList.remove("show");
+              backToTopBtn.classList.remove("show");
             }
-        });
-        backToTopBtn.addEventListener("click", function () {
+          });
+          backToTopBtn.addEventListener("click", function () {
             window.scrollTo({
                top: 0,
                behavior: "smooth"
-            });
+          });
         });
     </script>
 </body>
 </html>
+
