@@ -7,25 +7,26 @@
 
 /* Body e sfondo web page */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f4f4f9;
     color: #333;
     line-height: 1.8;
     padding: 20px;
     background-image: url('res/img/background.jpg');
-    background-size: cover; 
-    background-position: center; 
-    background-attachment: fixed; 
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }
 
-/* Intestazione*/
+/* Intestazione */
 header {
-    background-color: rgba(44, 62, 80, 0.7);
-    backdrop-filter: blur(5px); 
+    background-color: rgba(44, 62, 80, 0.75);
+    backdrop-filter: blur(5px);
     color: #fff;
     padding: 40px 0;
     text-align: center;
 }
+
 header .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -38,47 +39,53 @@ header .container {
     display: flex;
     gap: 50px;
     flex-wrap: wrap;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.85);
     padding: 20px;
-    border-radius: 8px; 
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15);
 }
 
 /* Sezioni */
-.introduction, .personal-info, .download, .google-form {
+.introduction, .personal-info, .download, .google-form, .counter-section {
     background: white;
     padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1);
     margin-bottom: 40px;
+    width: 100%;
 }
+
 h2 {
-    font-size: 1.8em;
+    font-size: 2em;
     color: #2c3e50;
     margin-bottom: 20px;
     text-align: center;
 }
+
 p {
     font-size: 1.2em;
-    color: #333;
+    color: #444;
     margin-bottom: 15px;
 }
 
-/* Campo input per nome azienda */
+/* Campo input */
 #nome-azienda {
     width: 100%;
     padding: 14px;
     margin-top: 20px;
     font-size: 1.1em;
     border: 2px solid #ccc;
-    border-radius: 6px;
+    border-radius: 8px;
     text-align: center;
-}
-#nome-azienda:focus {
-    border-color: #3498db;
+    transition: border-color 0.3s;
 }
 
-/* Messaggio di "Loading..." */
+#nome-azienda:focus {
+    border-color: #3498db;
+    outline: none;
+}
+
+/* Loading */
 #loading-text {
     font-size: 1.2em;
     color: #3498db;
@@ -86,160 +93,125 @@ p {
     display: none;
 }
 
-/* spinner di caricamento */
-.spinner {
-    border: 4px solid #f3f3f3;
-    border-top: 4px solid #3498db;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    animation: spin 1s linear infinite;
-}
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-/* Pulsante di download */
-.download-btn {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 14px 35px;
+/* Pulsanti */
+.download-btn, .google-form-btn {
+    padding: 14px 30px;
     font-size: 1.3em;
-    background-color: #3498db;
+    background: linear-gradient(135deg, #3498db, #2980b9);
     color: white;
     text-decoration: none;
-    border-radius: 6px;
-    transition: background-color 0.5s;
+    border-radius: 8px;
+    transition: all 0.4s ease;
+    text-align: center;
     cursor: pointer;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
 }
-.download-btn:hover {
-    background-color: #2980b9;
+
+.download-btn:hover, .google-form-btn:hover {
+    background: linear-gradient(135deg, #2980b9, #1c5980);
 }
+
 .download-btn:disabled {
-    background-color: #95a5a6;
+    background: #95a5a6;
     cursor: not-allowed;
 }
 
-/* Pulsante Google Form */
-.center-button {
-    display: flex;
-    justify-content: center; 
-    align-items: center;     
-    width: 100%;            
-    margin-top: 20px;       
-}
-.google-form-btn, .download-btn {
-    padding: 14px 30px;
-    font-size: 1.2em;
-    background-color: #8e44ad;
-    color: white;
-    text-decoration: none;
-    border-radius: 6px;
-    transition: background-color 0.5s;
+/* Sezione contatori */
+.counter-section {
     text-align: center;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
+    margin-top: 30px;
 }
 
-.google-form-btn:hover, .download-btn:hover {
-    background-color: #732d91;
+.visitor-counter, .download-counter {
+    font-size: 1.5em;
+    margin: 15px 0;
+    color: #2c3e50;
 }
-.google-form-btn .icon {
-    margin-right: 8px;
-}
-/* Sfondo scuro */
+
+/* Footer */
 footer {
-    background-color: #222;  
-    color: white;  
-    text-align: center;  
-    padding: 20px 0;  
+    background-color: #222;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
 }
 
-/* Stili per il paragrafo del copyright */
 footer p {
-    font-size: 14px;  
-    margin: 10px 0;  
-}
-/* Stili per la lista di link nel footer */
-footer ul {
-    list-style: none;  
-    padding: 0;  
-    margin: 10px 0;  
-    display: flex;  
-    justify-content: center;  
-    align-items: center;
-    gap: 20px; 
-}
-/* Stili per gli elementi della lista */
-footer ul li {
-    display: inline-block;  
-}
-/* Stili per i link */
-footer ul li a {
-    text-decoration: none;  
-    color: white;  
-    font-size: 16px;  
-    transition: color 0.3s;  
-}
-footer ul li a:hover {
-    color: #f39c12;  
+    font-size: 14px;
+    margin: 10px 0;
 }
 
-/* Focus per i pulsanti */
-.download-btn:focus, .google-form-btn:focus {
-    outline: 3px solid #3498db;
-    outline-offset: 2px;
-    background-color: #2980b9;  
+footer ul {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
 }
-    
-/* Pulsante di BackToTop */
+
+footer ul li {
+    display: inline-block;
+}
+
+footer ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
+footer ul li a:hover {
+    color: #f39c12;
+}
+
+/* Bottone Back to Top */
 #back-to-top-btn {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  padding: 12px 16px;
-  font-size: 24px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-  z-index: 999;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.4s ease, transform 0.3s ease;
-  transform: translateY(20px);
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    padding: 14px 16px;
+    font-size: 26px;
+    background: linear-gradient(135deg, #00b894, #00cec9);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    z-index: 999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease, transform 0.3s ease, background 0.4s ease;
+    transform: translateY(20px);
 }
+
 #back-to-top-btn.show {
-  opacity: 1;
-  pointer-events: auto;
-  transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
 }
-/* Effetto Hover */
+
 #back-to-top-btn:hover {
-    background-color: #0056b3; 
+    background: linear-gradient(135deg, #0984e3, #74b9ff);
 }
-/* Media Queries per smartphone */
+
+/* Media Queries per mobile */
 @media (max-width: 768px) {
     .content {
         flex-direction: column;
         gap: 20px;
     }
-    .col-2 {
-        width: 100%;
-    }
+
     h2 {
-        font-size: 1.5em;  
+        font-size: 1.7em;
     }
-    .download-btn {
-        font-size: 1.1em;  
-        padding: 12px 30px;
-    }
-    .google-form-btn {
+
+    .download-btn, .google-form-btn {
         font-size: 1.1em;
-        padding: 12px 25px;
+        padding: 12px 20px;
     }
 }
