@@ -77,12 +77,17 @@ p {
     border: 2px solid #ccc;
     border-radius: 8px;
     text-align: center;
-    transition: border-color 0.3s;
+    transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 #nome-azienda:focus {
     border-color: #3498db;
     outline: none;
+    box-shadow: 0 0 10px rgba(52, 152, 219, 0.5); /* Aggiunto un effetto di ombra al focus */
+}
+
+#nome-azienda:hover {
+    border-color: #2980b9; /* Cambia il colore del bordo quando l'utente passa sopra */
 }
 
 /* Loading */
@@ -197,6 +202,7 @@ footer ul li a:hover {
 
 #back-to-top-btn:hover {
     background: linear-gradient(135deg, #0984e3, #74b9ff);
+    transform: scale(1.1); /* Aggiunta animazione di ingrandimento al passaggio del mouse */
 }
 
 /* Media Queries per mobile */

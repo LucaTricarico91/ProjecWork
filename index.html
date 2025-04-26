@@ -12,39 +12,74 @@
     <meta property="og:url" content="https://lucatricarico91.github.io/ProjecWork/">
 
     <script>
+    // Funzione per abilitare/disabilitare il pulsante di download in base al nome azienda
     function enableDownload() {
         var nomeAzienda = document.getElementById("nome-azienda").value.trim();
         var downloadBtn = document.getElementById("download-btn");
-        var loadingText = document.getElementById("loading-text");
+        var loadingDiv = document.getElementById("loading-text");
         if (nomeAzienda !== "") {
-            loadingText.style.display = "inline"; 
+            loadingDiv.style.display = "block"; 
             downloadBtn.setAttribute("disabled", "true");
             setTimeout(function() {
-                loadingText.style.display = "none"; 
+                loadingDiv.style.display = "none"; 
                 downloadBtn.removeAttribute("disabled"); 
             }, 2000);
         } else {
-            loadingText.style.display = "none";
+            loadingDiv.style.display = "none";
             downloadBtn.setAttribute("disabled", "true");
         }
     }
+
+    // Funzione per il download del PDF
     function downloadPDF() {
-        var nomeAzienda = document.getElementById("nome-azienda").value.trim();
+        var nomeAzienda = document.getElementById("nome-azienda").value.trim(); 
         if (!nomeAzienda) {
             alert("Inserisci il nome della tua azienda");
             return;
         }
+        
         var filePath = "res/files/RISK_ASSESSMENT.pdf"; 
         var link = document.createElement("a"); 
-        link.href = filePath;
+        link.href = filePath; 
         link.setAttribute("download", "RISK_ASSESSMENT.pdf"); 
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
 
-        // Aggiorna il contatore dei download
-        fetch('https://api.countapi.xyz/hit/lucatricarico91_projecwork/download_site');
+        // Incrementa e aggiorna il contatore dei download usando localStorage
+        let downloadCount = localStorage.getItem('downloadCount') || 0;
+        downloadCount = parseInt(downloadCount) + 1;
+        localStorage.setItem('downloadCount', downloadCount);
+        animateCounter('download-counter-number', downloadCount);
     }
+
+    // Funzione per animare il conteggio dei numeri
+    function animateCounter(id, target) {
+        const element = document.getElementById(id);
+        let count = 0;
+        const increment = target / 100;
+        const updateCounter = () => {
+            count += increment;
+            if (count < target) {
+                element.innerText = Math.floor(count);
+                requestAnimationFrame(updateCounter);
+            } else {
+                element.innerText = target;
+            }
+        };
+        updateCounter();
+    }
+
+    // Funzione per gestire il conteggio delle visite usando localStorage
+    document.addEventListener('DOMContentLoaded', function() {
+        let visitCount = localStorage.getItem('visitCount') || 0;
+        visitCount = parseInt(visitCount) + 1;
+        localStorage.setItem('visitCount', visitCount);
+        animateCounter('visit-counter-number', visitCount);
+
+        let downloadCount = localStorage.getItem('downloadCount') || 0;
+        animateCounter('download-counter-number', downloadCount);
+    });
     </script>
 </head>
 
@@ -71,7 +106,9 @@
                 <h2>- INSERISCI QUI IL TUO NOME -</h2>
                 <h2>CLICCA SUL PULSANTE DI DOWNLOAD E SCARICA IL DOCUMENTO</h2>
                 <input type="text" id="nome-azienda" name="nome-azienda" onkeyup="enableDownload()">
-                <span id="loading-text" style="display: none;" aria-live="polite">Loading...</span>
+                <div id="loading-text" style="display: none;" aria-live="polite">
+                    <div class="spinner"></div>
+                </div>
                 <div class="center-button">
                     <button id="download-btn" class="download-btn" onclick="downloadPDF()" disabled>📥 Download</button>
                 </div>
@@ -118,38 +155,6 @@
         } else {
             backToTopBtn.classList.remove("show");
         }
-    });
-
-    // Funzione per animare il conteggio dei numeri
-    function animateCounter(id, target) {
-        const element = document.getElementById(id);
-        let count = 0;
-        const increment = target / 100;
-        const updateCounter = () => {
-            count += increment;
-            if (count < target) {
-                element.innerText = Math.floor(count);
-                requestAnimationFrame(updateCounter);
-            } else {
-                element.innerText = target;
-            }
-        };
-        updateCounter();
-    }
-
-    // Avvia il conteggio dei contatori usando CountAPI
-    document.addEventListener('DOMContentLoaded', function() {
-        fetch('https://api.countapi.xyz/hit/lucatricarico91_projecwork/visite_site')
-            .then(res => res.json())
-            .then(data => {
-                animateCounter('visit-counter-number', data.value);
-            });
-
-        fetch('https://api.countapi.xyz/get/lucatricarico91_projecwork/download_site')
-            .then(res => res.json())
-            .then(data => {
-                animateCounter('download-counter-number', data.value);
-            });
     });
     </script>
 
