@@ -117,7 +117,7 @@ p {
     margin-right: 8px;
 }
 
-/*  Grafica e Layout per i footer
+/*  Grafica e Layout per i footer*/
 footer {
     background-color: #222;  
     color: white;  
@@ -129,27 +129,6 @@ footer p {
     font-size: 14px;  
     margin: 10px 0;
     text-align: center;  
-}
-footer ul {
-    list-style: none;  
-    padding: 0;  
-    margin: 10px 0;  
-    display: flex;  
-    justify-content: center;  
-    align-items: center;
-    gap: 20px; 
-}
-footer ul li {
-    display: inline-block;  
-}
-footer ul li a {
-    text-decoration: none;  
-    color: white;  
-    font-size: 16px;  
-    transition: color 0.3s;  
-}
-footer ul li a:hover {
-    color: #f39c12;  
 }
 
 /*  Grafica e Layout Pulsante di BackToTop */
