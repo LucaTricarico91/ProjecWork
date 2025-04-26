@@ -1,69 +1,64 @@
 <!DOCTYPE html>
+
 <html lang="it">
 <head> 
-    <!-- Collegamento al CSS -->
+    <!-- Dichiarazione dello style.ccs -->
     <link rel="stylesheet" href="style.css">
     <title>IL RISK ASSESSMENT NELL'ERA DIGITALE</title>
+    <!--Meta Tag e Risoluzione per device -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-    <meta name="description" content="Valutazione e Gestione del Rischio Aziendale Oggi: Un Imperativo Strategico! Scarica il documento per maggiori informazioni e lascia un feedback.">
+    <meta name="description" content="Valutazione e Gestione del Rischio Aziendale Oggi: Un Imperativo Strategico! 
+                Scarica il documento per maggiori informazioni e lascia un feedback.">
+    <!-- Open Graph per device -->
     <meta property="og:title" content="IL RISK ASSESSMENT NELL'ERA DIGITALE">
-    <meta property="og:description" content="Valutazione e Gestione del Rischio Aziendale Oggi: Un Imperativo Strategico!">
+    <meta property="og:description" content="Valutazione e Gestione del Rischio Aziendale Oggi: Un Imperativo Strategico! ">
+    <!-- URL della pagina web-->
     <meta property="og:url" content="https://lucatricarico91.github.io/ProjecWork/">
 
-    <script>
-        // Funzione per il download del PDF
-        function downloadPDF() {
-            var filePath = "res/files/RISK_ASSESSMENT.pdf"; 
-            var link = document.createElement("a"); 
-            link.href = filePath; 
-            link.setAttribute("download", "RISK_ASSESSMENT.pdf"); 
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-
-            // Incrementa e aggiorna il contatore dei download usando localStorage
-            let downloadCount = localStorage.getItem('downloadCount') || 0;
-            downloadCount = parseInt(downloadCount) + 1;
-            localStorage.setItem('downloadCount', downloadCount);
-            animateCounter('download-counter-number', downloadCount);
+   <script> 
+    //function per il download e dichiarazione delle variabili, ciclo if
+    function enableDownload() {
+        var nomeAzienda = document.getElementById("nome-azienda").value.trim();
+        var downloadBtn = document.getElementById("download-btn");
+        var loadingText = document.getElementById("loading-text");
+        // verifica condizione 
+        if (nomeAzienda !== "") {
+            loadingText.style.display = "inline"; 
+            downloadBtn.setAttribute("disabled", "true");
+            setTimeout(function() {
+                loadingText.style.display = "none"; 
+                downloadBtn.removeAttribute("disabled"); 
+            }, 2000);
+        } else {
+            loadingText.style.display = "none";
+            downloadBtn.setAttribute("disabled", "true");
         }
-
-        // Funzione per animare il conteggio dei numeri
-        function animateCounter(id, target) {
-            const element = document.getElementById(id);
-            let count = 0;
-            const increment = target / 100;
-            const updateCounter = () => {
-                count += increment;
-                if (count < target) {
-                    element.innerText = Math.floor(count);
-                    requestAnimationFrame(updateCounter);
-                } else {
-                    element.innerText = target;
-                }
-            };
-            updateCounter();
+    }
+    function downloadPDF() {
+        var nomeAzienda = document.getElementById("nome-azienda").value.trim();
+        if (!nomeAzienda) {
+            alert("Inserisci il nome della tua azienda");
+            return;
         }
-
-        // Funzione per gestire il conteggio delle visite usando localStorage
-        document.addEventListener('DOMContentLoaded', function() {
-            let visitCount = localStorage.getItem('visitCount') || 0;
-            visitCount = parseInt(visitCount) + 1;
-            localStorage.setItem('visitCount', visitCount);
-            animateCounter('visit-counter-number', visitCount);
-
-            let downloadCount = localStorage.getItem('downloadCount') || 0;
-            animateCounter('download-counter-number', downloadCount);
-        });
-    </script>
+        // filePath del documento da scaricare
+        var filePath = "res/files/RISK_ASSESSMENT.pdf"; 
+        // creazione link temporaneo per il download  
+        var link = document.createElement("a"); 
+        link.href = filePath;
+        link.setAttribute("download","RISK_ASSESSMENT.pdf"); 
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+</script>
+    
 </head>
-
 <body class="body">
     <header>
         <div class="container">
-            <h1>IL RISK ASSESSMENT NELL’ERA DIGITALE</h1>
-            <h1>Valutazione e Gestione del Rischio Aziendale Oggi: Un Imperativo Strategico!</h1>
+            <h1>IL RISK ASSESSMENT NELL’ERA DIGITALE </h1>
+            <h1>Valutazione e Gestione del Rischio Aziendale Oggi: Un Imperativo Strategico! </h1>
         </div>
     </header>
 
@@ -71,37 +66,28 @@
         <div class="col-2">
             <section class="introduction">
                 <h2>INTRODUZIONE</h2>
-                <p>La Valutazione del rischio o Risk Assessment è un processo importante nella strategia di gestione del rischio di un'azienda: scopri le fasi, gli obiettivi e le azioni da intraprendere, scarica il documento.</p>
+                <p>La Valutazione del rischio o come meglio conosciuto Risk Assessment, è un processo importante nella strategia di gestione del rischio di un'azienda: scopri le fasi, gli obiettivi e le azioni da intraprendere, scarica il documento.</p>
                 <h2>CHE COS'E' IL RISK ASSESSMENT?</h2>
-                <p>La valutazione del rischio è l'identificazione dei pericoli che potrebbero impattare negativamente sulla capacità di un'organizzazione di condurre il proprio business. Aiuta a identificare i reali rischi aziendali e fornisce misure, processi e controlli per ridurre l'impatto di queste minacce sulle operazioni.</p>
+                <p>La valutazione del rischio, meglio conosciuta come risk assessment, è l'identificazione dei pericoli che potrebbero avere un impatto negativo sulla capacità di un'organizzazione di condurre il proprio business, queste valutazioni aiutano ad identificare i reali rischi aziendali e forniscono misure, processi e controlli per ridurre l'impatto di queste minacce sulle operazioni aziendali.</p>
             </section>
         </div>
 
         <div class="col-2">
             <section class="download">
-                <h2>CLICCA SUL PULSANTE DI DOWNLOAD E SCARICA IL DOCUMENTO</h2>
+                <h2>- INSERISCI QUI IL TUO NOME -</h2>
+                <h2>CLICCA SUl PULSANTE DI DOWNLOAD E SCARICA IL DOCUMENTO</h2>
+                <input type="text" id="nome-azienda" name="nome-azienda" onkeyup="enableDownload()">
+                <span id="loading-text" style="display: none;" aria-live="polite">Loading...</span>
                 <div class="center-button">
-                    <button id="download-btn" class="download-btn" onclick="downloadPDF()">📥 Download</button>
+                    <button id="download-btn" class="download-btn" onclick="downloadPDF()" disabled>📥 Download</button>
                 </div>
             </section>
-
             <section class="google-form">
-                <div class="center-button">
-                    <a href="https://forms.gle/QTFNaUG1ViP7fc279" target="_blank" class="google-form-btn">
+                   <div class="center-button">
+                      <a href="https://forms.gle/QTFNaUG1ViP7fc279" target="_blank" class="google-form-btn">
                         <span class="icon">📝</span>Lascia un Feedback
-                    </a>
-                </div>
-            </section>
-
-            <section class="counter-section">
-                <div class="visitor-counter">
-                    Visite totali:
-                    <span id="visit-counter-number">0</span>
-                </div>
-                <div class="download-counter">
-                    Download totali:
-                    <span id="download-counter-number">0</span>
-                </div>
+                      </a>
+                   </div>
             </section>
         </div>
     </main>
@@ -110,24 +96,33 @@
         <div class="container">
             <p>&copy; Luca Tricarico - Matricola 0312301666 - ProjectWork Unipegaso 2025</p>
             <ul>
+                <li><a href="#" id="privacy">Privacy da aggiungere</a></li>
                 <li><a href="https://it.linkedin.com/in/luca-tricarico-8180b1132" target="_blank">LinkedIn</a></li>
+                <li><a href="#" id="terms">Termini e condizioni da aggiungere</a></li>
             </ul>
         </div>
     </footer>
-
+   <!--bottone per la risalita della pagina -->
     <button onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" id="back-to-top-btn">⬆️</button>
-
+     <!--bottone per la risalita della pagina -->
     <script>
-    const backToTopBtn = document.getElementById("back-to-top-btn");
-    window.addEventListener("scroll", function () {
-        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-        if (scrollTop > 100) {
-            backToTopBtn.classList.add("show");
-        } else {
-            backToTopBtn.classList.remove("show");
-        }
-    });
+        const backToTopBtn = document.getElementById("back-to-top-btn");
+        window.addEventListener("scroll", function () {
+          const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            
+            if (scrollTop > 100) {
+              backToTopBtn.classList.add("show");
+            } else {
+              backToTopBtn.classList.remove("show");
+            }
+          });
+          backToTopBtn.addEventListener("click", function () {
+            window.scrollTo({
+               top: 0,
+               behavior: "smooth"
+          });
+        });
     </script>
-
 </body>
 </html>
+
