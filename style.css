@@ -68,36 +68,6 @@ p {
     margin-bottom: 15px;
 }
 
-/* Campo input */
-#nome-azienda {
-    width: 100%;
-    padding: 14px;
-    margin-top: 20px;
-    font-size: 1.1em;
-    border: 2px solid #ccc;
-    border-radius: 8px;
-    text-align: center;
-    transition: border-color 0.3s, box-shadow 0.3s;
-}
-
-#nome-azienda:focus {
-    border-color: #3498db;
-    outline: none;
-    box-shadow: 0 0 10px rgba(52, 152, 219, 0.5); /* Aggiunto un effetto di ombra al focus */
-}
-
-#nome-azienda:hover {
-    border-color: #2980b9; /* Cambia il colore del bordo quando l'utente passa sopra */
-}
-
-/* Loading */
-#loading-text {
-    font-size: 1.2em;
-    color: #3498db;
-    margin-left: 10px;
-    display: none;
-}
-
 /* Pulsanti */
 .download-btn, .google-form-btn {
     padding: 14px 30px;

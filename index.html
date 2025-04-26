@@ -12,74 +12,50 @@
     <meta property="og:url" content="https://lucatricarico91.github.io/ProjecWork/">
 
     <script>
-    // Funzione per abilitare/disabilitare il pulsante di download in base al nome azienda
-    function enableDownload() {
-        var nomeAzienda = document.getElementById("nome-azienda").value.trim();
-        var downloadBtn = document.getElementById("download-btn");
-        var loadingDiv = document.getElementById("loading-text");
-        if (nomeAzienda !== "") {
-            loadingDiv.style.display = "block"; 
-            downloadBtn.setAttribute("disabled", "true");
-            setTimeout(function() {
-                loadingDiv.style.display = "none"; 
-                downloadBtn.removeAttribute("disabled"); 
-            }, 2000);
-        } else {
-            loadingDiv.style.display = "none";
-            downloadBtn.setAttribute("disabled", "true");
+        // Funzione per il download del PDF
+        function downloadPDF() {
+            var filePath = "res/files/RISK_ASSESSMENT.pdf"; 
+            var link = document.createElement("a"); 
+            link.href = filePath; 
+            link.setAttribute("download", "RISK_ASSESSMENT.pdf"); 
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+
+            // Incrementa e aggiorna il contatore dei download usando localStorage
+            let downloadCount = localStorage.getItem('downloadCount') || 0;
+            downloadCount = parseInt(downloadCount) + 1;
+            localStorage.setItem('downloadCount', downloadCount);
+            animateCounter('download-counter-number', downloadCount);
         }
-    }
 
-    // Funzione per il download del PDF
-    function downloadPDF() {
-        var nomeAzienda = document.getElementById("nome-azienda").value.trim(); 
-        if (!nomeAzienda) {
-            alert("Inserisci il nome della tua azienda");
-            return;
+        // Funzione per animare il conteggio dei numeri
+        function animateCounter(id, target) {
+            const element = document.getElementById(id);
+            let count = 0;
+            const increment = target / 100;
+            const updateCounter = () => {
+                count += increment;
+                if (count < target) {
+                    element.innerText = Math.floor(count);
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    element.innerText = target;
+                }
+            };
+            updateCounter();
         }
-        
-        var filePath = "res/files/RISK_ASSESSMENT.pdf"; 
-        var link = document.createElement("a"); 
-        link.href = filePath; 
-        link.setAttribute("download", "RISK_ASSESSMENT.pdf"); 
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
 
-        // Incrementa e aggiorna il contatore dei download usando localStorage
-        let downloadCount = localStorage.getItem('downloadCount') || 0;
-        downloadCount = parseInt(downloadCount) + 1;
-        localStorage.setItem('downloadCount', downloadCount);
-        animateCounter('download-counter-number', downloadCount);
-    }
+        // Funzione per gestire il conteggio delle visite usando localStorage
+        document.addEventListener('DOMContentLoaded', function() {
+            let visitCount = localStorage.getItem('visitCount') || 0;
+            visitCount = parseInt(visitCount) + 1;
+            localStorage.setItem('visitCount', visitCount);
+            animateCounter('visit-counter-number', visitCount);
 
-    // Funzione per animare il conteggio dei numeri
-    function animateCounter(id, target) {
-        const element = document.getElementById(id);
-        let count = 0;
-        const increment = target / 100;
-        const updateCounter = () => {
-            count += increment;
-            if (count < target) {
-                element.innerText = Math.floor(count);
-                requestAnimationFrame(updateCounter);
-            } else {
-                element.innerText = target;
-            }
-        };
-        updateCounter();
-    }
-
-    // Funzione per gestire il conteggio delle visite usando localStorage
-    document.addEventListener('DOMContentLoaded', function() {
-        let visitCount = localStorage.getItem('visitCount') || 0;
-        visitCount = parseInt(visitCount) + 1;
-        localStorage.setItem('visitCount', visitCount);
-        animateCounter('visit-counter-number', visitCount);
-
-        let downloadCount = localStorage.getItem('downloadCount') || 0;
-        animateCounter('download-counter-number', downloadCount);
-    });
+            let downloadCount = localStorage.getItem('downloadCount') || 0;
+            animateCounter('download-counter-number', downloadCount);
+        });
     </script>
 </head>
 
@@ -103,14 +79,9 @@
 
         <div class="col-2">
             <section class="download">
-                <h2>- INSERISCI QUI IL TUO NOME -</h2>
                 <h2>CLICCA SUL PULSANTE DI DOWNLOAD E SCARICA IL DOCUMENTO</h2>
-                <input type="text" id="nome-azienda" name="nome-azienda" onkeyup="enableDownload()">
-                <div id="loading-text" style="display: none;" aria-live="polite">
-                    <div class="spinner"></div>
-                </div>
                 <div class="center-button">
-                    <button id="download-btn" class="download-btn" onclick="downloadPDF()" disabled>📥 Download</button>
+                    <button id="download-btn" class="download-btn" onclick="downloadPDF()">📥 Download</button>
                 </div>
             </section>
 
