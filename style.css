@@ -16,9 +16,14 @@ body {
     background-size: cover; 
     background-position: center; 
     background-attachment: fixed; 
+    display: flex;
+    justify-content: center;  /* Centra il contenuto orizzontalmente */
+    align-items: center;      /* Centra il contenuto verticalmente */
+    min-height: 100vh;        /* Garantisce che la pagina occupi tutta l'altezza della finestra */
+    flex-direction: column;   /* Allinea i contenuti in verticale */
 }
 
-/* Intestazione*/
+/* Intestazione */
 header {
     background-color: rgba(44, 62, 80, 0.7);
     backdrop-filter: blur(5px); 
@@ -33,11 +38,12 @@ header .container {
 
 /* Contenuto principale */
 .content {
-    max-width: 1200px;
-    margin: 60px auto;
+    width: auto;  /* Permette al contenitore di ridimensionarsi in base al contenuto */
+    max-width: 1200px; /* Imposta un limite massimo alla larghezza del contenitore */
+    margin: 0 auto;   /* Centra il contenitore orizzontalmente */
     display: flex;
-    gap: 50px;
-    flex-wrap: wrap;
+    flex-direction: column;  /* Organizza i contenuti in verticale */
+    gap: 50px;  /* Spazio tra i contenitori */
     background-color: rgba(255, 255, 255, 0.8);
     padding: 20px;
     border-radius: 8px; 
@@ -64,42 +70,6 @@ p {
     margin-bottom: 15px;
 }
 
-/* Campo input per nome azienda */
-#nome-azienda {
-    width: 100%;
-    padding: 14px;
-    margin-top: 20px;
-    font-size: 1.1em;
-    border: 2px solid #ccc;
-    border-radius: 6px;
-    text-align: center;
-}
-#nome-azienda:focus {
-    border-color: #3498db;
-}
-
-/* Messaggio di "Loading..." */
-#loading-text {
-    font-size: 1.2em;
-    color: #3498db;
-    margin-left: 10px;
-    display: none;
-}
-
-/* spinner di caricamento */
-.spinner {
-    border: 4px solid #f3f3f3;
-    border-top: 4px solid #3498db;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    animation: spin 1s linear infinite;
-}
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
 /* Pulsante di download */
 .download-btn {
     display: inline-block;
@@ -112,6 +82,9 @@ p {
     border-radius: 6px;
     transition: background-color 0.5s;
     cursor: pointer;
+    max-width: 250px;  /* Limita la larghezza del pulsante */
+    width: 100%;  /* Assicura che si adatti al contenitore */
+    text-align: center;  /* Centra il testo nel pulsante */
 }
 .download-btn:hover {
     background-color: #2980b9;
@@ -141,6 +114,8 @@ p {
     cursor: pointer;
     display: inline-flex;
     align-items: center;
+    max-width: 250px;  /* Limita la larghezza del pulsante */
+    width: 100%;  /* Assicura che si adatti al contenitore */
 }
 
 .google-form-btn:hover, .download-btn:hover {
@@ -149,6 +124,7 @@ p {
 .google-form-btn .icon {
     margin-right: 8px;
 }
+
 /* Sfondo scuro */
 footer {
     background-color: #222;  
@@ -157,12 +133,10 @@ footer {
     padding: 20px 0;  
 }
 
-/* Stili per il paragrafo del copyright */
 footer p {
     font-size: 14px;  
     margin: 10px 0;  
 }
-/* Stili per la lista di link nel footer */
 footer ul {
     list-style: none;  
     padding: 0;  
@@ -172,11 +146,9 @@ footer ul {
     align-items: center;
     gap: 20px; 
 }
-/* Stili per gli elementi della lista */
 footer ul li {
     display: inline-block;  
 }
-/* Stili per i link */
 footer ul li a {
     text-decoration: none;  
     color: white;  
@@ -187,13 +159,6 @@ footer ul li a:hover {
     color: #f39c12;  
 }
 
-/* Focus per i pulsanti */
-.download-btn:focus, .google-form-btn:focus {
-    outline: 3px solid #3498db;
-    outline-offset: 2px;
-    background-color: #2980b9;  
-}
-    
 /* Pulsante di BackToTop */
 #back-to-top-btn {
   position: fixed;
@@ -218,10 +183,12 @@ footer ul li a:hover {
   pointer-events: auto;
   transform: translateY(0);
 }
+
 /* Effetto Hover */
 #back-to-top-btn:hover {
     background-color: #0056b3; 
 }
+
 /* Media Queries per smartphone */
 @media (max-width: 768px) {
     .content {

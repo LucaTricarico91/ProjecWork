@@ -2,7 +2,7 @@
 
 <html lang="it">
 <head> 
-    <!-- Dichiarazione dello style.ccs -->
+    <!-- Dichiarazione dello style.css -->
     <link rel="stylesheet" href="style.css">
     <title>IL RISK ASSESSMENT NELL'ERA DIGITALE</title>
     <!--Meta Tag e Risoluzione per device -->
@@ -17,36 +17,14 @@
     <meta property="og:url" content="https://lucatricarico91.github.io/ProjecWork/">
 
    <script> 
-    //function per il download e dichiarazione delle variabili, ciclo if
-    function enableDownload() {
-        var nomeAzienda = document.getElementById("nome-azienda").value.trim();
-        var downloadBtn = document.getElementById("download-btn");
-        var loadingText = document.getElementById("loading-text");
-        // verifica condizione 
-        if (nomeAzienda !== "") {
-            loadingText.style.display = "inline"; 
-            downloadBtn.setAttribute("disabled", "true");
-            setTimeout(function() {
-                loadingText.style.display = "none"; 
-                downloadBtn.removeAttribute("disabled"); 
-            }, 2000);
-        } else {
-            loadingText.style.display = "none";
-            downloadBtn.setAttribute("disabled", "true");
-        }
-    }
+    // funzione per il download
     function downloadPDF() {
-        var nomeAzienda = document.getElementById("nome-azienda").value.trim();
-        if (!nomeAzienda) {
-            alert("Inserisci il nome della tua azienda");
-            return;
-        }
         // filePath del documento da scaricare
         var filePath = "res/files/RISK_ASSESSMENT.pdf"; 
         // creazione link temporaneo per il download  
         var link = document.createElement("a"); 
         link.href = filePath;
-        link.setAttribute("download","RISK_ASSESSMENT.pdf"); 
+        link.setAttribute("download", "RISK_ASSESSMENT.pdf"); 
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
@@ -74,12 +52,9 @@
 
         <div class="col-2">
             <section class="download">
-                <h2>- INSERISCI QUI IL TUO NOME -</h2>
-                <h2>CLICCA SUl PULSANTE DI DOWNLOAD E SCARICA IL DOCUMENTO</h2>
-                <input type="text" id="nome-azienda" name="nome-azienda" onkeyup="enableDownload()">
-                <span id="loading-text" style="display: none;" aria-live="polite">Loading...</span>
+                <h2>Scarica il documento sul Risk Assessment in formato pdf</h2>
                 <div class="center-button">
-                    <button id="download-btn" class="download-btn" onclick="downloadPDF()" disabled>📥 Download</button>
+                    <button id="download-btn" class="download-btn" onclick="downloadPDF()">📥 Download</button>
                 </div>
             </section>
             <section class="google-form">
@@ -96,9 +71,7 @@
         <div class="container">
             <p>&copy; Luca Tricarico - Matricola 0312301666 - ProjectWork Unipegaso 2025</p>
             <ul>
-                <li><a href="#" id="privacy">Privacy da aggiungere</a></li>
                 <li><a href="https://it.linkedin.com/in/luca-tricarico-8180b1132" target="_blank">LinkedIn</a></li>
-                <li><a href="#" id="terms">Termini e condizioni da aggiungere</a></li>
             </ul>
         </div>
     </footer>
@@ -125,4 +98,3 @@
     </script>
 </body>
 </html>
-
