@@ -1,11 +1,11 @@
-/* Reset CSS: Rimuove margini e padding predefiniti e imposta il box-sizing per evitare problemi di layout */
+/* Reset CSS per tutti i broswer*/
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Grafica e Layout Body web page */
+/*  Grafica e Layout Body e Sfondo web page */
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f9;
@@ -16,14 +16,9 @@ body {
     background-size: cover; 
     background-position: center; 
     background-attachment: fixed; 
-    display: flex;
-    justify-content: center;  
-    align-items: center;     
-    min-height: 100vh;        
-    flex-direction: column;   
 }
 
-/* Grafica e Layout Intestazione */
+/*  Grafica e Layout Intestazione*/
 header {
     background-color: rgba(44, 62, 80, 0.7);
     backdrop-filter: blur(5px); 
@@ -38,42 +33,41 @@ header .container {
 
 /* Grafica e Layout Contenuto principale */
 .content {
-    width: auto;  
-    max-width: 1200px; 
-    margin: 0 auto;   
+    max-width: 1200px;
+    margin: 60px auto;
+    justify-content: center;
     display: flex;
-    flex-direction: column; 
-    gap: 50px;  
-    background-color: rgba(255, 255, 255, 0.8);
+    gap: 50px;
+    flex-wrap: wrap;
+    background-color: rgba(44, 62, 80, 0.7);
+    backdrop-filter: blur(5px); 
     padding: 20px;
     border-radius: 8px; 
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
 }
 
-/* Grafica e Layout per le Sezioni (Introduzione, Download, Feedback) */
+/*  Grafica e Layout Sezioni */
 .introduction, .personal-info, .download, .google-form {
-    background: white;
+    background: whitesmoke;
     padding: 30px;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     margin-bottom: 40px;
 }
- /* Grafica e Layout per i titoli */
 h2 {
-    font-size: 1.8em;
+    font-size: 1.5em;
     color: #2c3e50;
     margin-bottom: 20px;
     text-align: center;
 }
-/* Grafica e Layout per il testo*/
 p {
-    font-size: 1.2em;
+    font-size: 1em;
     color: #333;
     margin-bottom: 15px;
-    text-align: justify; 
+    text-align: justify
 }
 
-/* Grafica e Layout pulsante di download */
+/*  Grafica e Layout Pulsante di download */
 .download-btn {
     display: inline-block;
     margin-top: 20px;
@@ -85,19 +79,16 @@ p {
     border-radius: 6px;
     transition: background-color 0.5s;
     cursor: pointer;
-    max-width: 250px;  /* Limita la larghezza del pulsante */
-    width: 100%;  /* Assicura che si adatti al contenitore */
-    text-align: center;  /* Centra il testo nel pulsante */
 }
 .download-btn:hover {
-    background-color: #2980b9;/* Colore di sfondo al passaggio del mouse */
+    background-color: #2980b9;
 }
 .download-btn:disabled {
     background-color: #95a5a6;
-    cursor: not-allowed;/* Cambia il cursore quando disabilitato */
+    cursor: not-allowed;
 }
 
-/* Grafica e Layoutpulsante Google Form */
+/*  Grafica e Layout Pulsante Google Form */
 .center-button {
     display: flex;
     justify-content: center; 
@@ -117,8 +108,6 @@ p {
     cursor: pointer;
     display: inline-flex;
     align-items: center;
-    max-width: 250px; 
-    width: 100%;  
 }
 
 .google-form-btn:hover, .download-btn:hover {
@@ -128,16 +117,18 @@ p {
     margin-right: 8px;
 }
 
-/* Footer: Impostazioni di stile per il piè di pagina */
+/*  Grafica e Layout per i footer
 footer {
     background-color: #222;  
     color: white;  
     text-align: center;  
     padding: 20px 0;  
 }
+
 footer p {
     font-size: 14px;  
-    margin: 10px 0;  
+    margin: 10px 0;
+    text-align: center;  
 }
 footer ul {
     list-style: none;  
@@ -161,7 +152,7 @@ footer ul li a:hover {
     color: #f39c12;  
 }
 
-/* Grafica e Layout pulsante di BackToTop */
+/*  Grafica e Layout Pulsante di BackToTop */
 #back-to-top-btn {
   position: fixed;
   bottom: 30px;
@@ -191,7 +182,7 @@ footer ul li a:hover {
     background-color: #0056b3; 
 }
 
-/* Media Queries: Modifica layout per dispositivi mobili */
+/*  Grafica e Layout Media Queries per dispositivi mobile */
 @media (max-width: 768px) {
     .content {
         flex-direction: column;
