@@ -1,11 +1,11 @@
-/* Reset CSS per tutti i broswer*/
+/* Reset CSS */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/*  Grafica e Layout Body e Sfondo web page */
+/*  Grafica e Layout Corpo e Sfondo della web page */
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f9;
@@ -33,11 +33,11 @@ header .container {
 
 /* Grafica e Layout Contenuto principale */
 .content {
-    max-width: 1200px;
+    max-width: 900px;
     margin: 60px auto;
     justify-content: center;
     display: flex;
-    gap: 50px;
+    gap: 40px;
     flex-wrap: wrap;
     background-color: rgba(44, 62, 80, 0.7);
     backdrop-filter: blur(5px); 
@@ -55,7 +55,7 @@ header .container {
     margin-bottom: 40px;
 }
 h2 {
-    font-size: 1.5em;
+    font-size: 1.4em;
     color: #2c3e50;
     margin-bottom: 20px;
     text-align: center;
@@ -97,21 +97,22 @@ p {
     margin-top: 20px;       
 }
 .google-form-btn, .download-btn {
-    padding: 14px 30px;
+     padding: 14px 30px;
     font-size: 1.2em;
-    background-color: #8e44ad;
-    color: white;
+    background-color: rgba(0, 0, 255, 0.2);
+    color: blue; /* Testo blu */
     text-decoration: none;
+    border: 2px solid blue; 
     border-radius: 6px;
-    transition: background-color 0.5s;
+    transition: background-color 0.5s, color 0.5s;
     text-align: center;
     cursor: pointer;
     display: inline-flex;
     align-items: center;
 }
-
 .google-form-btn:hover, .download-btn:hover {
-    background-color: #732d91;
+    background-color: rgba(0, 0, 255, 0.7); 
+    color: white; 
 }
 .google-form-btn .icon {
     margin-right: 8px;
@@ -124,7 +125,6 @@ footer {
     text-align: center;  
     padding: 20px 0;  
 }
-
 footer p {
     font-size: 14px;  
     margin: 10px 0;
