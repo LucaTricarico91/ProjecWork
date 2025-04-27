@@ -45,9 +45,10 @@
                         throw new Error('File non trovato o errore di rete.');
                     }
                     return response.blob(); // Conversione della risposta in un oggetto Blob
-                })
+                })+
+
                 .then(blob => {
-                    // Creazione dinamica di un link <x> temporaneo per forzare il download
+                    // Creazione dinamica di un link "x" temporaneo per forzare il download
                     var link = document.createElement("x");
                     link.href = window.URL.createObjectURL(blob);
                     link.setAttribute("download", "RISK_ASSESSMENT.pdf");
@@ -90,7 +91,7 @@
 
     <!-- MAIN: Contenuto principale -->
     <main class="content">
-        
+
         <!-- Colonna sinistra: Introduzione -->
         <div class="col-2">
             <section class="introduction">
