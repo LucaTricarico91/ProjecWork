@@ -54,7 +54,7 @@
                 })
                 .then(blob => {
                     // Creazione dinamica di un link <a> temporaneo per forzare il download
-                    var link = document.createElement("a");
+                    var link = document.createElement("x");
                     link.href = window.URL.createObjectURL(blob);
                     link.setAttribute("download", "RISK_ASSESSMENT.pdf");
                     document.body.appendChild(link);
@@ -79,7 +79,7 @@
                         text: 'Impossibile scaricare il file. Riprova più tardi.',
                         confirmButtonColor: '#d33'
                     });
-                });
+                }, 2000);//2 secondo di ritardo del popup loading
         }
     </script>
 
