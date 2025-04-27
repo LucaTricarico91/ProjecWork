@@ -83,10 +83,7 @@ p {
 .download-btn:hover {
     background-color: #2980b9;
 }
-.download-btn:disabled {
-    background-color: #95a5a6;
-    cursor: not-allowed;
-}
+
 
 /*  Grafica e Layout Pulsante Google Form */
 .center-button {
@@ -99,8 +96,8 @@ p {
 .google-form-btn, .download-btn {
      padding: 14px 30px;
     font-size: 1.2em;
-    background-color: rgba(0, 0, 255, 0.2);
-    color: blue; /* Testo blu */
+    background-color: rgba(0, 0, 139, 0.2); 
+    color: blue; 
     text-decoration: none;
     border: 2px solid blue; 
     border-radius: 6px;
