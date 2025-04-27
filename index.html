@@ -37,7 +37,6 @@
                     Swal.showLoading(); // Mostra animazione di caricamento
                 }
             });
-
             // Uso della Fetch API per la verifica e scaricare il file
             fetch(filePath)
                 .then(response => {
@@ -55,7 +54,6 @@
                     document.body.appendChild(link);
                     link.click(); // Simula il click per avviare il download
                     document.body.removeChild(link); // Rimuove il link dopo l'utilizzo
-
                     // Mostra popup di successo
                     Swal.fire({
                         icon: 'success',
@@ -66,7 +64,6 @@
                 })
                 .catch(error => {
                     console.error('Errore nel download:', error); // Log di errore in console
-
                     // Mostra popup di errore
                     Swal.fire({
                         icon: 'error',
@@ -82,6 +79,7 @@
 
  <!-- Corpo principale della pagina -->
  <body class="body">
+
     <!-- HEADER: Intestazione -->
     <header>
         <div class="container">
@@ -92,6 +90,7 @@
 
     <!-- MAIN: Contenuto principale -->
     <main class="content">
+        
         <!-- Colonna sinistra: Introduzione -->
         <div class="col-2">
             <section class="introduction">
