@@ -1,100 +1,157 @@
 <!DOCTYPE html>
-
 <html lang="it">
 <head> 
     <!-- Link al foglio di stile esterno CSS -->
     <link rel="stylesheet" href="style.css">
-    <!-- Titolo della pagina che appare nella scheda del browser -->
+    
+    <!-- Titolo della pagina -->
     <title>IL RISK ASSESSMENT NELL'ERA DIGITALE</title>
-    <!--Meta Tag e Risoluzione per device -->
+    
+    <!-- Meta tag per encoding e mobile responsiveness -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-    <!-- Ottimizzazione SEO: descrizione della pagina -->
-    <meta name="description" content="Valutazione e Gestione del Rischio Aziendale Oggi: Un Imperativo Strategico! 
-                Scarica il documento per maggiori informazioni e lascia un feedback.">
-    <!-- Open Graph è uno standard per migliorare l'anteprima dei link social media.-->
+    
+    <!-- SEO: Descrizione della pagina -->
+    <meta name="description" content="Valutazione e Gestione del Rischio Aziendale Oggi: Un Imperativo Strategico! Scarica il documento per maggiori informazioni e lascia un feedback.">
+    
+    <!-- Open Graph: ottimizzazione anteprima sui social -->
     <meta property="og:title" content="IL RISK ASSESSMENT NELL'ERA DIGITALE">
-    <meta property="og:description" content="Valutazione e Gestione del Rischio Aziendale Oggi: Un Imperativo Strategico! ">
-    <!-- URL della pagina web-->
+    <meta property="og:description" content="Valutazione e Gestione del Rischio Aziendale Oggi: Un Imperativo Strategico!">
     <meta property="og:url" content="https://lucatricarico91.github.io/ProjecWork/">
 
-   <script> 
-    //Script JavaScript interno per gestire il download del file PDF
+    <!-- Libreria SweetAlert2 per popup più belli -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- Script interno: gestione download PDF con notifiche -->
+    <script> 
     function downloadPDF() {
-        // filePath del documento da scaricare
         var filePath = "res/files/RISK_ASSESSMENT.pdf"; 
-        // creazione link temporaneo per il download  
-        var link = document.createElement("a"); 
-        link.href = filePath;
-        link.setAttribute("download", "RISK_ASSESSMENT.pdf"); 
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
+
+        // Mostra un popup di caricamento
+        Swal.fire({
+            title: 'Download in corso...',
+            text: 'Attendi qualche secondo',
+            allowOutsideClick: false,
+            didOpen: () => {
+                Swal.showLoading(); // Animazione loading
+            }
+        });
+
+        // Tenta di scaricare il file
+        fetch(filePath)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('File non trovato o errore di rete.');
+                }
+                return response.blob(); // Trasforma la risposta in Blob
+            })
+            .then(blob => {
+                // Crea un link temporaneo per il download
+                var link = document.createElement("a");
+                link.href = window.URL.createObjectURL(blob);
+                link.setAttribute("download", "RISK_ASSESSMENT.pdf");
+                document.body.appendChild(link);
+                link.click(); // Avvia il download
+                document.body.removeChild(link);
+
+                // Chiude il loading e mostra successo
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Download completato!',
+                    text: 'Il file è stato scaricato correttamente.',
+                    confirmButtonColor: '#3085d6'
+                });
+            })
+            .catch(error => {
+                console.error('Errore nel download:', error);
+
+                // Chiude il loading e mostra errore
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Errore!',
+                    text: 'Impossibile scaricare il file. Riprova più tardi.',
+                    confirmButtonColor: '#d33'
+                });
+            });
     }
-   </script>
-    
+    </script>
 </head>
+
 <body class="body">
     <!-- Intestazione principale della pagina -->
     <header>
         <div class="container">
-            <h1>IL RISK ASSESSMENT NELL’ERA DIGITALE </h1>
-            <h1>Valutazione e Gestione del Rischio Aziendale Oggi: Un Imperativo Strategico! </h1>
+            <h1>IL RISK ASSESSMENT NELL’ERA DIGITALE</h1>
+            <h1>Valutazione e Gestione del Rischio Aziendale Oggi: Un Imperativo Strategico!</h1>
         </div>
     </header>
+
     <!-- Contenuto principale della pagina -->
     <main class="content">
-        <!-- Prima colonna: Sezione introduttiva -->
+        <!-- Colonna sinistra: Introduzione -->
         <div class="col-2">
             <section class="introduction">
                 <h2>INTRODUZIONE</h2>
-                <p>La Valutazione del rischio o come meglio conosciuto Risk Assessment, è un processo importante nella strategia di gestione del rischio di un'azienda: scopri le fasi, gli obiettivi e le azioni da intraprendere, scarica il documento.</p>
+                <p>La Valutazione del rischio o Risk Assessment è un processo importante nella strategia di gestione del rischio di un'azienda: scopri le fasi, gli obiettivi e le azioni da intraprendere, scarica il documento.</p>
+                
                 <h2>CHE COS'E' IL RISK ASSESSMENT?</h2>
-                <p>La valutazione del rischio, meglio conosciuta come risk assessment, è l'identificazione dei pericoli che potrebbero avere un impatto negativo sulla capacità di un'organizzazione di condurre il proprio business, queste valutazioni aiutano ad identificare i reali rischi aziendali e forniscono misure, processi e controlli per ridurre l'impatto di queste minacce sulle operazioni aziendali.</p>
+                <p>La valutazione del rischio è l'identificazione dei pericoli che potrebbero avere un impatto negativo sulla capacità di un'organizzazione di condurre il proprio business. Queste valutazioni aiutano ad identificare i reali rischi aziendali e forniscono misure, processi e controlli per ridurre l'impatto di queste minacce sulle operazioni aziendali.</p>
             </section>
         </div>
-        <!-- Seconda colonna: Sezione download e feedback -->
+
+        <!-- Colonna destra: Download PDF e Google Form -->
         <div class="col-2">
             <section class="download">
-                <h2>Scarica il Pdf sul Risk Assessment </h2>
+                <h2>Scarica il Pdf sul Risk Assessment</h2>
                 <div class="center-button">
+                    <!-- Bottone per il download -->
                     <button id="download-btn" class="download-btn" onclick="downloadPDF()">📥 Download</button>
                 </div>
             </section>
+
             <section class="google-form">
-                   <div class="center-button">
-                      <a href="https://forms.gle/QTFNaUG1ViP7fc279" target="_blank" class="google-form-btn">
+                <div class="center-button">
+                    <!-- Link al modulo di feedback -->
+                    <a href="https://forms.gle/QTFNaUG1ViP7fc279" target="_blank" class="google-form-btn">
                         <span class="icon">📝</span>Lascia un Feedback
-                      </a>
-                   </div>
+                    </a>
+                </div>
             </section>
         </div>
     </main>
+
     <!-- Piè di pagina -->
     <footer>
         <div class="container">
             <p>&copy; Luca Tricarico - Matricola 0312301666 - ProjectWork Unipegaso 2025</p>
         </div>
     </footer>
-   <!--bottone per la risalita della pagina -->
+
+    <!-- Bottone per tornare in alto -->
     <button onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" id="back-to-top-btn">⬆️</button>
 
+    <!-- Script per mostrare/nascondere il bottone "Back to Top" -->
     <script>
-        const backToTopBtn = document.getElementById("back-to-top-btn");
-        window.addEventListener("scroll", function () {
-          const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-            if (scrollTop > 100) {
-              backToTopBtn.classList.add("show");
-            } else {
-              backToTopBtn.classList.remove("show");
-            }
-          });
-          backToTopBtn.addEventListener("click", function () {
-            window.scrollTo({
-               top: 0,
-               behavior: "smooth"
-          });
+    const backToTopBtn = document.getElementById("back-to-top-btn");
+
+    // Mostra il bottone se si scrolla in basso
+    window.addEventListener("scroll", function () {
+        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        if (scrollTop > 100) {
+            backToTopBtn.classList.add("show");
+        } else {
+            backToTopBtn.classList.remove("show");
+        }
+    });
+
+    // Scrolla verso l'alto con effetto smooth
+    backToTopBtn.addEventListener("click", function () {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
         });
+    });
     </script>
+
 </body>
 </html>
