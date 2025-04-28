@@ -2,10 +2,13 @@
 <html lang="it">
 
 <head>
+    
     <!-- Link al foglio di stile esterno CSS -->
     <link rel="stylesheet" href="style.css">
+
     <!-- Titolo della pagina che appare nella scheda del browser -->
     <title>IL RISK ASSESSMENT NELL'ERA DIGITALE</title>
+
     <!-- Meta tag per corretta codifica dei caratteri e adattabilità ai dispositivi mobili -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,10 +19,12 @@
     <meta property="og:description" content="Valutazione e Gestione del Rischio Aziendale Oggi: Un Imperativo Strategico!">
     <meta property="og:url" content="https://lucatricarico91.github.io/ProjecWork/">
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>  <!--Importazione libreria js esterna SweetAlert2 per la gestione dei popup-->
+    <!-- Importazione libreria js esterna SweetAlert2 per la gestione dei popup -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <!-- Script interno: Gestione download PDF con feedback -->
     <script>
-        /*Funzione che avvia il download di un file PDF con gestione di errori e notifiche utente*/
+        /* Funzione che avvia il download di un file PDF con gestione di errori e notifiche utente*/
         function downloadPDF() {
             var filePath = "res/files/RISK_ASSESSMENT.pdf"; // Percorso del file PDF da scaricare
 
@@ -39,11 +44,11 @@
                     if (!response.ok) {
                         throw new Error('File non trovato o errore di rete.');
                     }
-                    return response.blob(); //Conversione della risposta in un oggetto Blob
+                    return response.blob(); // Conversione della risposta in un oggetto Blob
                 })+
 
                 .then(blob => {
-                    //Creazione dinamica di un link "x" temporaneo per forzare il download
+                    // Creazione dinamica di un link "x" temporaneo per forzare il download
                     var link = document.createElement("x");
                     link.href = window.URL.createObjectURL(blob);
                     link.setAttribute("download", "RISK_ASSESSMENT.pdf");
@@ -73,10 +78,10 @@
 
 </head>
 
- <!--Corpo principale della pagina-->
+ <!-- Corpo principale della pagina -->
  <body class="body">
 
-    <!--Intestazione della pagina-->
+    <!-- HEADER: Intestazione -->
     <header>
         <div class="container">
             <h1>IL RISK ASSESSMENT NELL’ERA DIGITALE</h1>
@@ -84,18 +89,22 @@
         </div>
     </header>
 
-    <!--Contenuto principale Main-->
+    <!-- MAIN: Contenuto principale -->
     <main class="content">
 
-        <!--Colonna Introduzione-->
+        <!-- Colonna sinistra: Introduzione -->
+        <div class="col-2">
             <section class="introduction">
                 <h2>INTRODUZIONE</h2>
                 <p>La Valutazione del rischio o Risk Assessment è un processo importante nella strategia di gestione del rischio di un'azienda: scopri le fasi, gli obiettivi e le azioni da intraprendere, scarica il documento.</p>
                 <h2>CHE COS'E' IL RISK ASSESSMENT?</h2>
                 <p>La valutazione del rischio è l'identificazione dei pericoli che potrebbero avere un impatto negativo sulla capacità di un'organizzazione di condurre il proprio business. Queste valutazioni aiutano ad identificare i reali rischi aziendali e forniscono misure, processi e controlli per ridurre l'impatto di queste minacce sulle operazioni aziendali.</p>
             </section>
+        </div>
 
-            <!--Sezione Download PDF-->
+        <!-- Colonna destra: Download PDF e Form Feedback -->
+        <div class="col-2">
+            <!-- Sezione Download PDF -->
             <section class="download">
                 <h2>Scarica il Pdf sul Risk Assessment</h2>
                 <div class="center-button">
@@ -104,7 +113,7 @@
                 </div>
             </section>
 
-            <!--Sezione Form Google Feedback-->
+            <!-- Sezione Form Google Feedback -->
             <section class="google-form">
                 <div class="center-button">
                     <!-- Link al modulo Google Forms aperto in nuova scheda -->
@@ -113,16 +122,18 @@
                     </a>
                 </div>
             </section>
+
+        </div>
     </main>
 
-    <!--FOOTER: Piè di pagina-->
+    <!-- FOOTER: Piè di pagina -->
     <footer>
         <div class="container">
             <p>&copy; Luca Tricarico - Matricola 0312301666 - ProjectWork Unipegaso 2025</p>
         </div>
     </footer>
 
-    <!--Bottone "Back to Top" per risalire la pagina-->
+    <!-- Bottone "Back to Top" per risalire la pagina -->
     <button onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" id="back-to-top-btn">⬆️</button>
     <!-- Script per mostrare/nascondere il bottone in base allo scroll -->
     <script>
@@ -130,13 +141,14 @@
         // Aggiunta event listener allo scroll della pagina
         window.addEventListener("scroll", function () {
             const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            // Se l'utente ha scrollato più di 100px, mostra il bottone
             if (scrollTop > 100) {
                 backToTopBtn.classList.add("show");
             } else {
                 backToTopBtn.classList.remove("show");
             }
         });
-        //Funzionalità click sul bottone per tornare in cima alla pagina
+        // Funzionalità click sul bottone per tornare in cima alla pagina
         backToTopBtn.addEventListener("click", function () {
             window.scrollTo({
                 top: 0,
