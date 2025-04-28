@@ -44,8 +44,8 @@
                 })+
 
                 .then(blob => {
-                    // Creazione dinamica di un link "x" temporaneo per forzare il download
-                    var link = document.createElement("x");
+                    // Creazione dinamica di un link "a" temporaneo per forzare il download
+                    var link = document.createElement("a");
                     link.href = window.URL.createObjectURL(blob);
                     link.setAttribute("download", "RISK_ASSESSMENT.pdf");
                     document.body.appendChild(link);
