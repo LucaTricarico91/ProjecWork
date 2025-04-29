@@ -11,19 +11,16 @@
 
     <!-- Libreria SweetAlert2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
     <!-- Script interno: Gestione download PDF -->
     <script>
     function downloadPDF() {
         const filePath = "res/files/RISK_ASSESSMENT.pdf";
-
         Swal.fire({
             title: 'Download in corso...',
             text: 'Attendi qualche secondo',
             allowOutsideClick: false,
             didOpen: () => Swal.showLoading()
         });
-
         setTimeout(() => {
             fetch(filePath)
                 .then(response => {
