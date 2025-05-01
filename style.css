@@ -68,24 +68,6 @@ p {
     text-align: justify
 }
 
-/*  Grafica e Layout Pulsante di download */
-.download-btn {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 14px 35px;
-    font-size: 1.3em;
-    background-color: #3498db;
-    color: white;
-    text-decoration: none;
-    border-radius: 6px;
-    transition: background-color 0.5s;
-    cursor: pointer;
-}
-.download-btn:hover {
-    background-color: #2980b9;
-}
-
-
 /*  Grafica e Layout Pulsante Google Form */
 .center-button {
     display: flex;
