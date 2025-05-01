@@ -47,7 +47,7 @@ header .container {
 }
 
 /*  Grafica e Layout Sezioni */
-.introduction, .personal-info, .download, .google-form {
+.introduction, .download, .google-form {
     background: whitesmoke;
     padding: 30px;
     border-radius: 8px;
