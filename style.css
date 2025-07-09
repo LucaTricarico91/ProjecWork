@@ -162,8 +162,9 @@ footer p {
     }
 
     .download-btn,
-    .google-form-btn,
-    .calculate-risk-btn {
+    .calculate-risk-btn,
+    .google-form-btn
+    {
         font-size: 1.1em;
         padding: 12px 25px;
     }
