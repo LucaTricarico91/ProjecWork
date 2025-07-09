@@ -1,42 +1,56 @@
 <!DOCTYPE html>
 <html lang="it">
+
 <head>
-
-    <!-- Link al file style.css-->
+    <!-- Link al foglio di stile esterno CSS -->
     <link rel="stylesheet" href="style.css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Valutazione e Gestione del Rischio Aziendale Oggi: Un Imperativo Strategico! Scarica il documento per maggiori informazioni e lascia un feedback.">
+    <!-- Titolo della pagina che appare nella scheda del browser -->
     <title>IL RISK ASSESSMENT NELL'ERA DIGITALE</title>
-
-    <!-- Libreria SweetAlert2 -->
+    <!-- Meta tag per corretta codifica dei caratteri e adattabilità ai dispositivi mobili -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Valutazione e Gestione del Rischio Aziendale Oggi: Un Imperativo Strategico! Scarica il documento per maggiori informazioni e lascia un feedback." />
+    <!-- Open Graph Meta Tags per ottimizzazione e condivisione social media -->
+    <meta property="og:title" content="IL RISK ASSESSMENT NELL'ERA DIGITALE" />
+    <meta property="og:description" content="Valutazione e Gestione del Rischio Aziendale Oggi: Un Imperativo Strategico!" />
+    <meta property="og:url" content="https://lucatricarico91.github.io/ProjecWork/" />
+    <!-- Importazione libreria js esterna SweetAlert2 per la gestione dei popup -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <!-- Script interno: Gestione download PDF -->
+
+    <!-- Script interno: Gestione download PDF con feedback -->
     <script>
-    function downloadPDF() {
-        const filePath = "res/files/RISK_ASSESSMENT.pdf";
-        Swal.fire({
-            title: 'Download in corso...',
-            text: 'Attendi qualche secondo',
-            allowOutsideClick: false,
-            didOpen: () => Swal.showLoading()
-        });
-        setTimeout(() => {
+        /* Funzione che avvia il download di un file PDF con gestione di errori e notifiche utente*/
+        function downloadPDF() {
+            var filePath = "res/files/RISK_ASSESSMENT.pdf"; // Percorso del file PDF da scaricare
+
+            // Mostra popup di caricamento
+            Swal.fire({
+                title: 'Download in corso...',
+                text: 'Attendi qualche secondo',
+                allowOutsideClick: false,
+                didOpen: () => {
+                    Swal.showLoading(); // Mostra animazione di caricamento
+                }
+            });
+
+            // Uso della Fetch API per la verifica e scaricare il file
             fetch(filePath)
                 .then(response => {
+                    // Controllo se la risposta HTTP è valida
                     if (!response.ok) {
                         throw new Error('File non trovato o errore di rete.');
                     }
-                    return response.blob();
+                    return response.blob(); // Conversione della risposta in un oggetto Blob
                 })
                 .then(blob => {
-                    const link = document.createElement('a');
+                    // Creazione dinamica di un link "a" temporaneo per forzare il download
+                    var link = document.createElement("a");
                     link.href = window.URL.createObjectURL(blob);
-                    link.setAttribute('download', 'RISK_ASSESSMENT.pdf');
+                    link.setAttribute("download", "RISK_ASSESSMENT.pdf");
                     document.body.appendChild(link);
-                    link.click();
-                    document.body.removeChild(link);
-
+                    link.click(); // Simula il click per avviare il download
+                    document.body.removeChild(link); // Rimuove il link dopo l'utilizzo
+                    // Mostra popup di successo
                     Swal.fire({
                         icon: 'success',
                         title: 'Download completato!',
@@ -45,7 +59,8 @@
                     });
                 })
                 .catch(error => {
-                    console.error('Errore nel download:', error);
+                    console.error('Errore nel download:', error); // Log di errore in console
+                    // Mostra popup di errore
                     Swal.fire({
                         icon: 'error',
                         title: 'Errore!',
@@ -53,14 +68,92 @@
                         confirmButtonColor: '#d33'
                     });
                 });
-        }, 1000); // Timeout di 1 secondo
-    }
+        }
     </script>
+
+    <script>
+        // Step 1: Selezione del tipo di rischio
+        function calcolaTipoRischio() {
+            Swal.fire({
+                title: 'Seleziona il tipo di rischio',
+                input: 'select',
+                inputOptions: {
+                    'Economico': 'Rischio Economico',
+                    'Informatico': 'Rischio Informatico',
+                    'Ambientale': 'Rischio Ambientale'
+                },
+                inputPlaceholder: 'Scegli...',
+                showCancelButton: true,
+                confirmButtonText: 'Avanti',
+                inputValidator: (value) => {
+                    if (!value) {
+                        return 'Seleziona un tipo di rischio per continuare.';
+                    }
+                }
+            }).then(result => {
+                if (result.isConfirmed) {
+                    calcolaRischio(result.value); // Passaggio al calcolo
+                }
+            });
+        }
+
+        // Step 2: Inserimento probabilità e impatto
+        function calcolaRischio(tipo) {
+            Swal.fire({
+                title: `Inserisci valori da 1 a 5`,
+                html: `
+                    <input id="prob" type="number" min="1" max="5" class="swal2-input" placeholder="Probabilità (1-5)">
+                    <input id="imp" type="number" min="1" max="5" class="swal2-input" placeholder="Impatto (1-5)">
+                `,
+                focusConfirm: false,
+                confirmButtonText: 'Calcola',
+                preConfirm: () => {
+                    const prob = parseInt(document.getElementById('prob').value);
+                    const imp = parseInt(document.getElementById('imp').value);
+                    if (isNaN(prob) || isNaN(imp) || prob < 1 || prob > 5 || imp < 1 || imp > 5) {
+                        Swal.showValidationMessage('Inserisci valori numerici validi da 1 a 5');
+                        return false;
+                    }
+                    return { prob, imp, rischio: prob * imp };
+                }
+            }).then(result => {
+                if (result.isConfirmed) {
+                    const { prob, imp, rischio } = result.value;
+                    let livello, colore;
+
+                    if (rischio <= 6) {
+                        livello = 'Basso';
+                        colore = 'green';
+                    } else if (rischio <= 15) {
+                        livello = 'Medio';
+                        colore = 'orange';
+                    } else {
+                        livello = 'Alto';
+                        colore = 'red';
+                    }
+
+                    Swal.fire({
+                        title: 'Risultato Calcolo Rischio',
+                        icon: 'info',
+                        html: `
+                            <p><b>Tipo di rischio:</b> ${tipo}</p>
+                            <p><b>Probabilità:</b> ${prob}</p>
+                            <p><b>Impatto:</b> ${imp}</p>
+                            <p><b>Valore rischio:</b> ${rischio}</p>
+                            <p><b>Livello:</b> <span style="color: ${colore}; font-weight: bold">${livello}</span></p>
+                        `
+                    });
+                }
+            });
+        }
+    </script>
+
 </head>
 
-<body>
+<!-- Corpo principale della pagina -->
+<body class="body">
 
-    <!-- HEADER -->
+    <!-- HEADER: Intestazione -->
     <header>
         <div class="container">
             <h1>IL RISK ASSESSMENT NELL’ERA DIGITALE</h1>
@@ -68,32 +161,43 @@
         </div>
     </header>
 
-    <!-- Main contenente le due colonne-->
+    <!-- MAIN: Contenuto principale -->
     <main class="content">
-        <!--Prima colonna-->
+
+        <!-- Colonna sinistra: Introduzione -->
         <div class="col-2">
             <section class="introduction">
                 <h2>INTRODUZIONE</h2>
                 <p>La Valutazione del rischio o Risk Assessment è un processo importante nella strategia di gestione del rischio di un'azienda: scopri le fasi, gli obiettivi e le azioni da intraprendere, scarica il documento.</p>
-                <h2>CHE COS'È IL RISK ASSESSMENT?</h2>
+                <h2>CHE COS'E' IL RISK ASSESSMENT?</h2>
                 <p>La valutazione del rischio è l'identificazione dei pericoli che potrebbero avere un impatto negativo sulla capacità di un'organizzazione di condurre il proprio business. Queste valutazioni aiutano ad identificare i reali rischi aziendali e forniscono misure, processi e controlli per ridurre l'impatto di queste minacce sulle operazioni aziendali.</p>
             </section>
         </div>
 
-        <!--Seconda colonna-->
+        <!-- Colonna destra: Download PDF e Form Feedback -->
         <div class="col-2">
-            <!-- Download PDF -->
+            <!-- Sezione Download PDF -->
             <section class="download">
                 <h2>Scarica il Pdf sul Risk Assessment</h2>
                 <div class="center-button">
-                    <button id="download-btn" class="download-btn" type="button" onclick="downloadPDF()">📥 Download</button>
+                    <!-- Bottone che richiama la funzione downloadPDF() -->
+                    <button id="download-btn" class="download-btn" onclick="downloadPDF()">📥 Download</button>
                 </div>
             </section>
 
-            <!-- Google Form Feedback -->
-            <section class="google-form">
-                <h2>Lascia il tuo Feedback</h2>
+            <!-- Sezione Calcolo del Rischio -->
+            <section class="risk-calc">
+                <h2>Calcola il Rischio</h2>
                 <div class="center-button">
+                    <button class="calculate-risk-btn" onclick="calcolaTipoRischio()">🧮 Calcola </button>
+                </div>
+            </section>
+
+            <!-- Sezione Form Google Feedback -->
+            <section class="google-form">
+                <h2>Lascia qui il tuo feedback</h2>
+                <div class="center-button">
+                    <!-- Link al modulo Google Forms aperto in nuova scheda -->
                     <a href="https://forms.gle/QTFNaUG1ViP7fc279" target="_blank" class="google-form-btn">
                         <span class="icon">📝</span>Feedback
                     </a>
@@ -102,28 +206,43 @@
         </div>
     </main>
 
-    <!-- FOOTER -->
+    <!-- FOOTER: Piè di pagina -->
     <footer>
         <div class="container">
-            <p>&copy; Luca Tricarico - Matricola 0312301666 - Project Work Unipegaso 2025</p>
+            <p>&copy; LUCA TRICARICO - Matr. 0312301666 - ProjectWork UniPegaso 2025</p>
         </div>
     </footer>
 
-    <!-- BACK TO TOP BUTTON -->
-    <button id="back-to-top-btn" type="button">⬆️</button>
+    <!-- Link LinkedIn sotto il container -->
+    <div style="text-align: center; margin: 20px 0;">
+        <a href="https://www.linkedin.com/in/luca-tricarico-8180b1132/" target="_blank" style="color: #0077b5; text-decoration: none; font-weight: bold; font-size: 1em;">
+            🔗 Seguimi su LinkedIn
+        </a>
+    </div>
 
-    <!-- Script gestione Back to Top -->
+    <!-- Bottone "Back to Top" per risalire la pagina -->
+    <button onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" id="back-to-top-btn">⬆️</button>
+    <!-- Script per mostrare/nascondere il bottone in base allo scroll -->
     <script>
-    const backToTopBtn = document.getElementById("back-to-top-btn");
-
-    window.addEventListener("scroll", () => {
-        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-        backToTopBtn.classList.toggle("show", scrollTop > 100);
-    });
-
-    backToTopBtn.addEventListener("click", () => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-    });
+        const backToTopBtn = document.getElementById("back-to-top-btn");
+        // Aggiunta event listener allo scroll della pagina
+        window.addEventListener("scroll", function () {
+            const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            // Se l'utente ha scrollato più di 100px, mostra il bottone
+            if (scrollTop > 100) {
+                backToTopBtn.classList.add("show");
+            } else {
+                backToTopBtn.classList.remove("show");
+            }
+        });
+        // Funzionalità click sul bottone per tornare in cima alla pagina
+        backToTopBtn.addEventListener("click", function () {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth" // Scorrimento fluido
+            });
+        });
     </script>
 </body>
+
 </html>

@@ -5,7 +5,7 @@
     box-sizing: border-box;
 }
 
-/*  Grafica e Layout Corpo e Sfondo della web page */
+/* Grafica e Layout Corpo e Sfondo della web page */
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f9;
@@ -13,19 +13,20 @@ body {
     line-height: 1.8;
     padding: 20px;
     background-image: url('res/img/background.jpg');
-    background-size: cover; 
-    background-position: center; 
-    background-attachment: fixed; 
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }
 
-/*  Grafica e Layout Intestazione*/
+/* Grafica e Layout Intestazione */
 header {
     background-color: rgba(44, 62, 80, 0.7);
-    backdrop-filter: blur(5px); 
+    backdrop-filter: blur(5px);
     color: #fff;
     padding: 40px 0;
     text-align: center;
 }
+
 header .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -40,49 +41,46 @@ header .container {
     gap: 40px;
     flex-wrap: wrap;
     background-color: rgba(44, 62, 80, 0.7);
-    backdrop-filter: blur(5px); 
+    backdrop-filter: blur(5px);
     padding: 20px;
-    border-radius: 8px; 
+    border-radius: 8px;
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
 }
 
-/*  Grafica e Layout Sezioni */
-.introduction, .download, .google-form {
+/* Grafica e Layout Sezioni */
+.introduction, .personal-info, .download, .risk-calc, .google-form {
     background: whitesmoke;
     padding: 30px;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     margin-bottom: 40px;
 }
-/*  Stili intestazione h2 paragrafi p*/
+
+/* Stili intestazione h2 paragrafi p */
 h2 {
     font-size: 1.4em;
     color: #2c3e50;
     margin-bottom: 20px;
     text-align: center;
 }
+
 p {
     font-size: 1em;
     color: #333;
     margin-bottom: 15px;
-    text-align: justify
+    text-align: justify;
 }
 
-/*  Grafica e Layout Pulsanti */
-.center-button {
-    display: flex;
-    justify-content: center; 
-    align-items: center;     
-    width: 100%;            
-    margin-top: 20px;       
-}
-.google-form-btn, .download-btn {
-     padding: 14px 30px;
+/* Grafica e Layout Pulsanti comuni */
+.download-btn,
+.calculate-risk-btn,
+.google-form-btn{
+    padding: 14px 30px;
     font-size: 1.2em;
-    background-color: rgba(0, 0, 139, 0.2); 
-    color: blue; 
+    background-color: rgba(0, 0, 139, 0.2);
+    color: blue;
     text-decoration: none;
-    border: 2px solid blue; 
+    border: 2px solid blue;
     border-radius: 6px;
     transition: background-color 0.5s, color 0.5s;
     text-align: center;
@@ -90,74 +88,82 @@ p {
     display: inline-flex;
     align-items: center;
 }
-.google-form-btn:hover, .download-btn:hover {
-    background-color: rgba(0, 0, 255, 0.7); 
-    color: white; 
-}
+
 .google-form-btn .icon {
     margin-right: 8px;
 }
 
-/*  Grafica e Layout per i footer*/
+/* Pulsante Google Form e centering */
+.center-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+}
+
+/* Footer */
 footer {
-    background-color: #222;  
-    color: white;  
-    text-align: center;  
-    padding: 20px 0;  
+    background-color: #222;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
 }
+
 footer p {
-    font-size: 14px;  
+    font-size: 14px;
     margin: 10px 0;
-    text-align: center;  
+    text-align: center;
 }
 
-/*  Grafica e Layout Pulsante di BackToTop */
+/* Pulsante BackToTop */
 #back-to-top-btn {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  padding: 12px 16px;
-  font-size: 24px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-  z-index: 999;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.4s ease, transform 0.3s ease;
-  transform: translateY(20px);
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    padding: 12px 16px;
+    font-size: 24px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    z-index: 999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease, transform 0.3s ease;
+    transform: translateY(20px);
 }
+
 #back-to-top-btn.show {
-  opacity: 1;
-  pointer-events: auto;
-  transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
 }
 
-/* Effetto Hover */
 #back-to-top-btn:hover {
-    background-color: #0056b3; 
+    background-color: #0056b3;
 }
 
-/*  Grafica e Layout Media Queries per dispositivi mobile */
+/* Responsive Design */
 @media (max-width: 768px) {
     .content {
         flex-direction: column;
         gap: 20px;
     }
+
     .col-2 {
         width: 100%;
     }
+
     h2 {
-        font-size: 1.5em;  
+        font-size: 1.5em;
     }
-    .download-btn {
-        font-size: 1.1em;  
-        padding: 12px 30px;
-    }
-    .google-form-btn {
+
+    .download-btn,
+    .google-form-btn,
+    .calculate-risk-btn {
         font-size: 1.1em;
         padding: 12px 25px;
     }
