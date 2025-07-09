@@ -5,12 +5,12 @@
     box-sizing: border-box;
 }
 
-/* Corpo della pagina */
+/* Grafica e Layout Corpo e Sfondo della web page */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
     background-color: #f4f4f9;
     color: #333;
-    line-height: 1.8;
+    line-height: 1.6;
     padding: 20px;
     background-image: url('res/img/background.jpg');
     background-size: cover;
@@ -18,7 +18,7 @@ body {
     background-attachment: fixed;
 }
 
-/* Header */
+/* Grafica e Layout Intestazione */
 header {
     background-color: rgba(44, 62, 80, 0.7);
     backdrop-filter: blur(5px);
@@ -26,12 +26,13 @@ header {
     padding: 40px 0;
     text-align: center;
 }
+
 header .container {
     max-width: 1200px;
     margin: 0 auto;
 }
 
-/* Contenuto principale */
+/* Grafica e Layout Contenuto principale */
 .content {
     max-width: 900px;
     margin: 60px auto;
@@ -46,7 +47,7 @@ header .container {
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
 }
 
-/* Sezioni interne */
+/* Grafica e Layout Sezioni */
 .introduction, .personal-info, .download, .risk-calc, .google-form {
     background: whitesmoke;
     padding: 30px;
@@ -55,15 +56,19 @@ header .container {
     margin-bottom: 40px;
 }
 
-/* Titoli */
+/* Stili intestazione h2 paragrafi p */
 h2 {
     font-size: 1.4em;
     color: #2c3e50;
     margin-bottom: 20px;
     text-align: center;
 }
-
-/* Paragrafi */
+h1.subtitle {
+    font-size: 1.5rem; /* dimensione più piccola */
+    font-weight: 400;  /* più leggero, se vuoi */
+    margin-top: 0.5rem;
+    color: #fff;       /* mantiene il colore bianco */
+}
 p {
     font-size: 1em;
     color: #333;
@@ -71,7 +76,7 @@ p {
     text-align: justify;
 }
 
-/* Pulsanti */
+/* Grafica e Layout Pulsanti comuni */
 .download-btn,
 .calculate-risk-btn,
 .google-form-btn {
@@ -82,19 +87,28 @@ p {
     text-decoration: none;
     border: 2px solid blue;
     border-radius: 6px;
-    transition: background-color 0.5s, color 0.5s;
     text-align: center;
     cursor: pointer;
     display: inline-flex;
     align-items: center;
+    transition: background-color 0.4s, color 0.4s, transform 0.3s, box-shadow 0.3s;
 }
 
-/* Icona nel pulsante feedback */
+/* Effetto hover pulsanti */
+.download-btn:hover,
+.calculate-risk-btn:hover,
+.google-form-btn:hover {
+    background-color: blue;
+    color: white;
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
 .google-form-btn .icon {
     margin-right: 8px;
 }
 
-/* Centrare pulsanti */
+/* Pulsante Google Form e centering */
 .center-button {
     display: flex;
     justify-content: center;
@@ -110,13 +124,14 @@ footer {
     text-align: center;
     padding: 20px 0;
 }
+
 footer p {
     font-size: 14px;
     margin: 10px 0;
-    text-align: center; 
+    text-align: center;
 }
 
-/* Bottone BackToTop */
+/* Pulsante BackToTop */
 #back-to-top-btn {
     position: fixed;
     bottom: 30px;
@@ -135,30 +150,35 @@ footer p {
     transition: opacity 0.4s ease, transform 0.3s ease;
     transform: translateY(20px);
 }
+
 #back-to-top-btn.show {
     opacity: 1;
     pointer-events: auto;
     transform: translateY(0);
 }
+
 #back-to-top-btn:hover {
     background-color: #0056b3;
 }
 
-/* Responsive layout */
+/* Responsive Design */
 @media (max-width: 768px) {
     .content {
         flex-direction: column;
         gap: 20px;
     }
+
     .col-2 {
         width: 100%;
     }
+
     h2 {
         font-size: 1.5em;
     }
+
     .download-btn,
-    .calculate-risk-btn,
-    .google-form-btn {
+    .google-form-btn,
+    .calculate-risk-btn {
         font-size: 1.1em;
         padding: 12px 25px;
     }
