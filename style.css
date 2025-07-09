@@ -152,15 +152,12 @@ footer p {
         flex-direction: column;
         gap: 20px;
     }
-
     .col-2 {
         width: 100%;
     }
-
     h2 {
         font-size: 1.5em;
     }
-
     .download-btn,
     .calculate-risk-btn,
     .google-form-btn
