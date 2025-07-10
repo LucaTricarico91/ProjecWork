@@ -78,7 +78,7 @@
         // Step 1: Selezione del tipo di rischio
         function calcolaTipoRischio() {
             Swal.fire({
-                title: 'Seleziona il tipo di rischio',
+                title: 'Seleziona il tipo di rischio ',
                 input: 'select',
                 inputOptions: {
                     'Economico': 'Rischio Economico',
@@ -93,20 +93,21 @@
                         return 'Seleziona un tipo di rischio per continuare.';
                     }
                 }
-            }).then(result => {
+            }).then(result => {  
                 if (result.isConfirmed) {
-                    calcolaRischio(result.value); // Passaggio al calcolo
+                    calcolaRischio(result.value); 
                 }
             });
         }
 
         // Step 2: Inserimento probabilità e impatto
         function calcolaRischio(tipo) {
+            //Mostra popup inserisci valori
             Swal.fire({
-                title: `Inserisci valori da 1 a 5`,
+                title: `Inserisci i valori di probabilità e impatto per il rischio scelto`,
                 html: `
-                    <input id="prob" type="number" min="1" max="5" class="swal2-input" placeholder="Probabilità (1-5)">
-                    <input id="imp" type="number" min="1" max="5" class="swal2-input" placeholder="Impatto (1-5)">
+                    <input id="prob" type="number" min="1" max="5" class="swal2-input" placeholder="Prob (1-5)">
+                    <input id="imp" type="number" min="1" max="5" class="swal2-input" placeholder="Imp (1-5)">
                 `,
                 focusConfirm: false,
                 confirmButtonText: 'Calcola',
@@ -123,7 +124,6 @@
                 if (result.isConfirmed) {
                     const { prob, imp, rischio } = result.value;
                     let livello, colore;
-
                     if (rischio <= 6) {
                         livello = 'Basso';
                         colore = 'green';
@@ -134,11 +134,12 @@
                         livello = 'Alto';
                         colore = 'red';
                     }
-
-                    Swal.fire({
+                    //mostra popup rischio
+                    Swal.fire({ 
                         title: 'Risultato Calcolo Rischio',
                         icon: 'info',
-                        html: `
+                        // Contenuto HTML dinamico
+                        html: `   
                             <p><b>Tipo di rischio:</b> ${tipo}</p>
                             <p><b>Probabilità:</b> ${prob}</p>
                             <p><b>Impatto:</b> ${imp}</p>
@@ -167,17 +168,17 @@
     <!-- MAIN: Contenuto principale -->
     <main class="content">
 
-        <!-- Colonna sinistra: Introduzione -->
+        <!-- Colonna sx Introduzione -->
         <div class="col-2">
             <section class="introduction">
                 <h2>INTRODUZIONE</h2>
-                <p>La Valutazione del rischio o Risk Assessment è un processo importante nella strategia di gestione del rischio di un'azienda: scopri le fasi, gli obiettivi e le azioni da intraprendere, scarica il documento.</p>
+                <p>La Valutazione del rischio o Risk Assessment è un processo importante nella strategia di gestione del rischio di un'azienda: scopri le fasi, gli obiettivi e le azioni da intraprendere, scarica il documento, calcola il rischio per una stima approssimativa del valore di rischio e lasciaci un feedback.</p>
                 <h2>CHE COS'E' IL RISK ASSESSMENT?</h2>
                 <p>La valutazione del rischio è l'identificazione dei pericoli che potrebbero avere un impatto negativo sulla capacità di un'organizzazione di condurre il proprio business. Queste valutazioni aiutano ad identificare i reali rischi aziendali e forniscono misure, processi e controlli per ridurre l'impatto di queste minacce sulle operazioni aziendali.</p>
             </section>
         </div>
 
-        <!-- Colonna destra: Download PDF e Form Feedback -->
+        <!-- Colonna dx Download PDF Calcolo del Rischio e Form Feedback -->
         <div class="col-2">
             <!-- Sezione Download PDF -->
             <section class="download">
@@ -212,7 +213,7 @@
     <!-- FOOTER: Piè di pagina -->
     <footer>
         <div class="container">
-            <p>&copy; LUCA TRICARICO - Matr. 0312301666 - ProjectWork UniPegaso 2025</p>
+            <p>&copy; LUCA TRICARICO - Matr.0312301666 - ProjectWork UniPegaso 2025</p>
         </div>
     </footer>
 
