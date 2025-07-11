@@ -4,19 +4,22 @@
 <head>
     <!-- Import Google Font: Poppins -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-
     <!-- Link al foglio di stile esterno CSS -->
     <link rel="stylesheet" href="style.css">
     <!-- Titolo della pagina che appare nella scheda del browser -->
     <title>IL RISK ASSESSMENT NELL'ERA DIGITALE</title>
+
     <!-- Meta tag per corretta codifica dei caratteri e adattabilità ai dispositivi mobili -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Valutazione e Gestione del Rischio Aziendale Oggi: Un Imperativo Strategico! Scarica il documento per maggiori informazioni e lascia un feedback." />
+    <meta name="description" content="Valutazione e Gestione del Rischio Aziendale Oggi: Un Imperativo Strategico! 
+                Scarica il documento, calcola il tuo rischio e lasciaci un feedback." />
+
     <!-- Open Graph Meta Tags per ottimizzazione e condivisione social media -->
     <meta property="og:title" content="IL RISK ASSESSMENT NELL'ERA DIGITALE" />
     <meta property="og:description" content="Valutazione e Gestione del Rischio Aziendale Oggi: Un Imperativo Strategico!" />
     <meta property="og:url" content="https://lucatricarico91.github.io/ProjecWork/" />
+
     <!-- Importazione libreria js esterna SweetAlert2 per la gestione dei popup -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -25,7 +28,6 @@
         /* Funzione che avvia il download di un file PDF con gestione di errori e notifiche utente*/
         function downloadPDF() {
             var filePath = "res/files/RISK_ASSESSMENT.pdf"; // Percorso del file PDF da scaricare
-
             // Mostra popup di caricamento
             Swal.fire({
                 title: 'Download in corso...',
@@ -75,82 +77,84 @@
     </script>
 
     <script>
-        // Step 1: Selezione del tipo di rischio
-        function calcolaTipoRischio() {
-            Swal.fire({
-                title: 'Seleziona il tipo di rischio ',
-                input: 'select',
-                inputOptions: {
-                    'Economico': 'Rischio Economico',
-                    'Informatico': 'Rischio Informatico',
-                    'Ambientale': 'Rischio Ambientale'
-                },
-                inputPlaceholder: 'Scegli...',
-                showCancelButton: true,
-                confirmButtonText: 'Avanti',
-                inputValidator: (value) => {
-                    if (!value) {
-                        return 'Seleziona un tipo di rischio per continuare.';
-                    }
-                }
-            }).then(result => {  
-                if (result.isConfirmed) {
-                    calcolaRischio(result.value); 
-                }
-            });
+     // 1. Chiede all'utente di selezionare il tipo di rischio
+     function calcolaTipoRischio() {
+        Swal.fire({
+        title: 'Seleziona il tipo di rischio',
+        input: 'select',
+        inputOptions: {
+            'Economico': 'Rischio Economico',
+            'Informatico': 'Rischio Informatico',
+            'Ambientale': 'Rischio Ambientale'
+        },
+        inputPlaceholder: 'Scegli...',
+        showCancelButton: true,
+        confirmButtonText: 'Avanti',
+        inputValidator: (value) => {
+            // Validazione: il campo non può restare vuoto
+            if (!value) {
+            return 'Seleziona un tipo di rischio per continuare.';
+            }
         }
+        }).then(result => {
+            if (result.isConfirmed) {
+            // Se confermato, passa al secondo step con il tipo selezionato
+            calcolaRischio(result.value);
+        }
+        });
+    }
 
-        // Step 2: Inserimento probabilità e impatto
-        function calcolaRischio(tipo) {
-            //Mostra popup inserisci valori
-            Swal.fire({
-                title: `Inserisci i valori di probabilità e impatto per il rischio scelto`,
-                html: `
-                    <input id="prob" type="number" min="1" max="5" class="swal2-input" placeholder="Prob (1-5)">
-                    <input id="imp" type="number" min="1" max="5" class="swal2-input" placeholder="Imp (1-5)">
-                `,
-                focusConfirm: false,
-                confirmButtonText: 'Calcola',
-                preConfirm: () => {
-                    const prob = parseInt(document.getElementById('prob').value);
-                    const imp = parseInt(document.getElementById('imp').value);
-                    if (isNaN(prob) || isNaN(imp) || prob < 1 || prob > 5 || imp < 1 || imp > 5) {
-                        Swal.showValidationMessage('Inserisci valori numerici validi da 1 a 5');
-                        return false;
-                    }
-                    return { prob, imp, rischio: prob * imp };
-                }
-            }).then(result => {
-                if (result.isConfirmed) {
-                    const { prob, imp, rischio } = result.value;
-                    let livello, colore;
-                    if (rischio <= 6) {
-                        livello = 'Basso';
-                        colore = 'green';
-                    } else if (rischio <= 15) {
-                        livello = 'Medio';
-                        colore = 'orange';
-                    } else {
-                        livello = 'Alto';
-                        colore = 'red';
-                    }
-                    //mostra popup rischio
-                    Swal.fire({ 
-                        title: 'Risultato Calcolo Rischio',
-                        icon: 'info',
-                        // Contenuto HTML dinamico
-                        html: `   
-                            <p><b>Tipo di rischio:</b> ${tipo}</p>
-                            <p><b>Probabilità:</b> ${prob}</p>
-                            <p><b>Impatto:</b> ${imp}</p>
-                            <p><b>Valore rischio:</b> ${rischio}</p>
-                            <p><b>Livello:</b> <span style="color: ${colore}; font-weight: bold">${livello}</span></p>
-                        `
-                    });
-                }
-            });
+    // 2. Chiede i valori di probabilità e impatto e li valida
+    function calcolaRischio(tipo) {
+        Swal.fire({
+        title: `Inserisci i valori di probabilità e impatto per il rischio scelto`,
+        html: `
+            <input id="prob" type="number" min="1" max="5" class="swal2-input" placeholder="Prob (1-5)">
+            <input id="imp" type="number" min="1" max="5" class="swal2-input" placeholder="Imp (1-5)">
+        `,
+        focusConfirm: false,
+        confirmButtonText: 'Calcola',
+        preConfirm: () => {
+            const prob = parseInt(document.getElementById('prob').value);
+            const imp = parseInt(document.getElementById('imp').value);
+
+            // Validazione numerica dei valori inseriti
+            if (isNaN(prob) || isNaN(imp) || prob < 1 || prob > 5 || imp < 1 || imp > 5) {
+            Swal.showValidationMessage('Inserisci valori numerici validi da 1 a 5');
+            return false;
+            }
+            // Restituisce i dati necessari per il calcolo
+            return { prob, imp, rischio: prob * imp };
+            }
+        }).then(result => {
+        if (result.isConfirmed) {
+            const { prob, imp, rischio } = result.value;
+            let livello, colore;
+        // 3. Classificazione del rischio in base al valore calcolato
+        if (rischio <= 6) {
+          livello = 'Basso'; colore = 'green';
+        } else if (rischio <= 15) {
+          livello = 'Medio'; colore = 'orange';
+        } else {
+          livello = 'Alto'; colore = 'red';
         }
-    </script>
+        // 4. Mostra il risultato all'utente in un popup
+        Swal.fire({
+          title: 'Risultato Calcolo Rischio',
+          icon: 'info',
+          html: `
+            <p><b>Tipo di rischio:</b> ${tipo}</p>
+            <p><b>Probabilità:</b> ${prob}</p>
+            <p><b>Impatto:</b> ${imp}</p>
+            <p><b>Valore rischio:</b> ${rischio}</p>
+            <p><b>Livello:</b> <span style="color: ${colore}; font-weight: bold">${livello}</span></p>
+          `
+        });
+      }
+    });
+  }
+</script>
+
 
 </head>
 
@@ -173,7 +177,7 @@
             <section class="introduction">
                 <h2>INTRODUZIONE</h2>
                 <p>La Valutazione del rischio o Risk Assessment è un processo importante nella strategia di gestione del rischio di un'azienda: scopri le fasi, gli obiettivi e le azioni da intraprendere, scarica il documento, calcola il rischio per una stima approssimativa del valore di rischio e lasciaci un feedback.</p>
-                <h2>CHE COS'E' IL RISK ASSESSMENT?</h2>
+                <h2>CHE COS'E' IL RISK ASSESSMENT ??</h2>
                 <p>La valutazione del rischio è l'identificazione dei pericoli che potrebbero avere un impatto negativo sulla capacità di un'organizzazione di condurre il proprio business. Queste valutazioni aiutano ad identificare i reali rischi aziendali e forniscono misure, processi e controlli per ridurre l'impatto di queste minacce sulle operazioni aziendali.</p>
             </section>
         </div>
