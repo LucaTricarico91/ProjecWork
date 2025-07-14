@@ -167,10 +167,12 @@ footer p {
   h1.subtitle {
     font-size: 1.6rem; 
     margin-top: 0.3rem;
+    text-align: center;
   }
 
   h2 {
     font-size: 1.2em;
+    text-align: center;
   }
 
   p {
@@ -196,11 +198,13 @@ footer p {
   }
 
   footer {
-    padding: 12px 0;
+    padding: 10px 0;
+    text-align: center
   }
 
   footer p {
-    font-size: 13px;
+    font-size: 10px;
+    text-align: center
   }
 }
 
