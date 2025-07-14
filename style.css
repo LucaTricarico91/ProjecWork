@@ -79,12 +79,12 @@ footer {
     background-color: #222;
     color: white;
     text-align: center;
-    padding: 18px 0;
+    padding: 20px 0;
 }
 
 footer p {
     font-size: 14px;
-    margin: 5px 0;
+    margin: 10px 0;
     text-align: center;
 }
 
@@ -200,12 +200,10 @@ footer p {
 
   footer {
     padding: 10px 0;
-    text-align: center;
   }
 
   footer p {
     font-size: 10px;
-    text-align: center;
   }
 }
 
