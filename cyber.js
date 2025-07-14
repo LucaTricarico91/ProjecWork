@@ -34,7 +34,7 @@ function startHack() {
   // Avvio di un popup modale (tramite SweetAlert2) con indicatore di caricamento
   Swal.fire({
     title: 'Simulazione in corso...',
-    html: '<b>Cyber Analysis</b><br><br>Attendere il completamento della scansione...',
+    html: '<b>Cyber Security Analysis</b><br><br>Attendere il completamento della scansione...',
     allowOutsideClick: false,
     showConfirmButton: false,
     didOpen: () => {
@@ -63,7 +63,7 @@ function startHack() {
     // Genera valori casuali per probabilità e impatto (range 1-5)
     const prob = Math.floor(Math.random() * 5) + 1;
     const imp = Math.floor(Math.random() * 5) + 1;
-    const rischio = prob * imp; // Formula semplificata: rischio = probabilità × impatto
+    const rischio = prob * imp; 
 
     // Definizione del livello di rischio e messaggio associato
     let livello, colore, spiegazione;
@@ -83,7 +83,7 @@ function startHack() {
 
     // Costruzione del testo completo del report tecnico
     const logText = `
-SIMULAZIONE CYBER RISK - REPORT TECNICO
+SIMULAZIONE CYBERSECURITY RISK - REPORT TECNICO
 ----------------------------------------
 📅 Data simulazione: ${new Date().toLocaleString()}
 🔢 Probabilità: ${prob}
@@ -136,7 +136,7 @@ ${log}
       `,
       icon: 'info',
       confirmButtonText: 'Chiudi',
-      confirmButtonColor: colore // Cambia colore del pulsante in base al rischio
+      confirmButtonColor: colore 
     });
 
     // Riabilita il pulsante per permettere una nuova simulazione
