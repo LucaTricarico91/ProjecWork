@@ -200,12 +200,12 @@ footer p {
 
   footer {
     padding: 10px 0;
-    text-align: left;
+    text-align: center;
   }
 
   footer p {
     font-size: 10px;
-    text-align: left;
+    text-align: center;
   }
 }
 
