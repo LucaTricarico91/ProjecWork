@@ -71,7 +71,7 @@ h1.subtitle {
 p {
     font-size: 1em;
     margin-bottom: 15px;
-    text-align: justify;
+    text-align: center;
 }
 
 /* Footer */
@@ -157,7 +157,7 @@ footer p {
 @media (max-width: 768px) {
   body {
     padding: 10px;
-    font-size: 0.95em; /* Leggermente più piccolo per adattarsi agli schermi piccoli */
+    font-size: 0.95em; 
   }
 
   header {
@@ -165,7 +165,7 @@ footer p {
   }
 
   h1.subtitle {
-    font-size: 1.6rem; /* Riduci leggermente titolo principale */
+    font-size: 1.6rem; 
     margin-top: 0.3rem;
   }
 
@@ -176,7 +176,7 @@ footer p {
   p {
     font-size: 0.95em;
     line-height: 1.5;
-    text-align: left; /* Più leggibile su schermi stretti */
+    text-align: left; 
   }
 
   .content {
