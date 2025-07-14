@@ -9,7 +9,7 @@
 body {
     font-family: 'Poppins', sans-serif;
     background-color: #f4f4f9;
-    color: #333;
+    color: whitesmoke;
     line-height: 1.6;
     padding: 20px;
     background-image: url('res/img/background.jpg');
@@ -22,7 +22,7 @@ body {
 header {
     background-color: rgba(44, 62, 80, 0.7);
     backdrop-filter: blur(5px);
-    color: #fff;
+    color: skyblue;
     padding: 40px 0;
     text-align: center;
 }
@@ -47,68 +47,6 @@ header .container {
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
 }
 
-/* Grafica e Layout Sezioni */
-.introduction, .personal-info, .download, .risk-calc, .google-form {
-    background: whitesmoke;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    margin-bottom: 40px;
-}
-
-/* Stili intestazione h2 paragrafi p */
-h2 {
-    font-size: 1.4em;
-    color: #2c3e50;
-    margin-bottom: 20px;
-    text-align: center;
-}
-h1.subtitle {
-    font-size: 1.5rem; /* dimensione più piccola */
-    font-weight: 400;  /* più leggero, se vuoi */
-    margin-top: 0.5rem;
-    color: #fff;       /* mantiene il colore bianco */
-}
-p {
-    font-size: 1em;
-    color: grey;
-    margin-bottom: 15px;
-    text-align: justify;
-}
-
-/* Grafica e Layout Pulsanti comuni */
-.download-btn,
-.calculate-risk-btn,
-.google-form-btn {
-    padding: 14px 30px;
-    font-size: 1.2em;
-    background-color: rgba(0, 0, 139, 0.2);
-    color: blue;
-    text-decoration: none;
-    border: 2px solid blue;
-    border-radius: 6px;
-    text-align: center;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    transition: background-color 0.4s, color 0.4s, transform 0.3s, box-shadow 0.3s;
-}
-
-/* Effetto hover pulsanti */
-.download-btn:hover,
-.calculate-risk-btn:hover,
-.google-form-btn:hover {
-    background-color: blue;
-    color: white;
-    transform: scale(1.05);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-}
-
-.google-form-btn .icon {
-    margin-right: 8px;
-}
-
-/* Pulsante Google Form e centering */
 .center-button {
     display: flex;
     justify-content: center;
@@ -117,18 +55,72 @@ p {
     margin-top: 20px;
 }
 
+/* Stili e bordi intestazione h2 paragrafi p */
+h2 {
+    font-size: 1.4em;
+    color: skyblue;
+    margin-bottom: 10px;
+    text-align: center;
+}
+h1.subtitle {
+    font-size: 2rem; 
+    font-weight: 500;  
+    margin-top: 0.5rem;
+    color: #fff;      
+}
+p {
+    font-size: 1em;
+    margin-bottom: 15px;
+    text-align: justify;
+}
+
 /* Footer */
 footer {
     background-color: #222;
     color: white;
     text-align: center;
-    padding: 20px 0;
+    padding: 18px 0;
 }
 
 footer p {
     font-size: 14px;
-    margin: 10px 0;
+    margin: 5px 0;
     text-align: center;
+}
+
+/* Stili e bordi Bottoni generici */
+.download-btn,
+.calculate-risk-btn,
+.google-form-btn,
+.cyber-btn {
+    background-color: rgba(0, 0, 13, 0.3);
+    color: skyblue;
+    font-size: 1.2em;
+    padding: 12px 30px;
+    margin: 10px;
+    border-radius: 8px;
+    border: 2px solid skyblue;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(0, 191, 255, 0.2);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Hover effect coerente */
+.download-btn:hover,
+.calculate-risk-btn:hover,
+.cyber-btn:hover {
+    background-color: skyblue;
+    color: white;
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(0, 191, 255, 0.6);
+}
+
+#console p {
+  animation: typeIn 0.4s ease-in-out;
 }
 
 /* Pulsante BackToTop */
@@ -171,30 +163,33 @@ footer p {
         width: 100%;
     }
     h2 {
-        font-size: 1.5em;
+    font-size: 1.5em;
     }
+}
+
+@media (max-width: 768px) {
     .download-btn,
+    .calculate-risk-btn,
     .google-form-btn,
-    .calculate-risk-btn {
-        font-size: 1.1em;
-        padding: 12px 25px;
+    .cyber-btn {
+        font-size: 1em;
+        padding: 10px 20px;
+        width: 100%;
     }
+
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
 }
-/* Migliora input fields nel popup SweetAlert2 */
-.swal2-popup .swal2-input {
-  width: 80%;         
-  max-width: 200px;     
-  margin: 10px auto;    
-  padding: 10px 12px;   
-  font-size: 1em;       
-  border: 2px solid #2c3e50;  
-  border-radius: 6px;   
-  color: #2c3e50;       
-  background-color: #f9f9f9; 
-}
-/* Focus visivo */
-.swal2-popup .swal2-input:focus {
-  outline: none;
-  border-color: #2980b9;    
-  box-shadow: 0 0 6px rgba(41, 128, 185, 0.3);
+
+@keyframes typeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
