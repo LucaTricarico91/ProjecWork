@@ -155,28 +155,54 @@ footer p {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .content {
-        flex-direction: column;
-        gap: 20px;
-    }
-    .col-2 {
-        width: 100%;
-    }
-    h2 {
-    font-size: 1.5em;
-    }
+  body {
+    padding: 10px;
+    font-size: 0.95em; /* Leggermente più piccolo per adattarsi agli schermi piccoli */
+  }
+
+  header {
+    padding: 25px 0;
+  }
+
+  h1.subtitle {
+    font-size: 1.6rem; /* Riduci leggermente titolo principale */
+    margin-top: 0.3rem;
+  }
+
+  h2 {
+    font-size: 1.2em;
+  }
+
+  p {
+    font-size: 0.95em;
+    line-height: 1.5;
+    text-align: left; /* Più leggibile su schermi stretti */
+  }
+
+  .content {
+    flex-direction: column;
+    gap: 20px;
+    padding: 15px;
+  }
+
+  .download-btn,
+  .calculate-risk-btn,
+  .google-form-btn,
+  .cyber-btn {
+    font-size: 1em;
+    padding: 10px 20px;
+    width: 100%;
+    text-align: center;
+  }
+
+  footer {
+    padding: 12px 0;
+  }
+
+  footer p {
+    font-size: 13px;
+  }
 }
-
-@media (max-width: 768px) {
-    .download-btn,
-    .calculate-risk-btn,
-    .google-form-btn,
-    .cyber-btn {
-        font-size: 1em;
-        padding: 10px 20px;
-        width: 100%;
-    }
-
 
 @keyframes blink {
   0%, 100% { opacity: 1; }
