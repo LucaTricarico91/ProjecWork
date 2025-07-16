@@ -112,26 +112,26 @@ function startHack() {
     if (rischio <= 6) {
       livello = 'BASSO';
       colore = 'green';
-      spiegazione = "RISCHIO BASSO – Il sistema presenta vulnerabilità minime. Si consiglia comunque un monitoraggio periodico.";
+      spiegazione = "RISCHIO BASSO – Il sistema presenta vulnerabilità di bassa entità. Si consiglia comunque un monitoraggio periodico.";
     } else if (rischio <= 15) {
       livello = 'MEDIO';
       colore = 'orange';
-      spiegazione = "RISCHIO MEDIO – Sono presenti vulnerabilità sfruttabili. Si consiglia un controllo più approfondito.";
+      spiegazione = "RISCHIO MEDIO – Sono presenti vulnerabilità sfruttabili. Si consiglia un controllo più approfondito per garantire la sicurezza del sistema .";
     } else {
       livello = 'ALTO';
       colore = 'red';
-      spiegazione = "RISCHIO ALTO – Il sistema è vulnerabile. Sono necessarie azioni correttive immediate!!";
+      spiegazione = "RISCHIO ALTO – Il sistema è vulnerabile. Sono necessarie azioni correttive immediate per evitare gravi conseguenze!!";
     }
 
     const logText = `
-SIMULAZIONE CYBERSECURITY RISK - REPORT TECNICO
-----------------------------------------
+    REPORT TECNICO - CYBERSECURITY RISK
+-------------------------------------------
 📅 Data simulazione: ${new Date().toLocaleString()}
 🔢 Probabilità: ${prob}
 💥 Impatto: ${imp}
 📊 Valore Rischio: ${rischio}
 📈 Livello Rischio: ${livello}
-----------------------------------------
+-------------------------------------------
 
 🔍 LOG DETTAGLIATO:
 ${log}
