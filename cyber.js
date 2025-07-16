@@ -1,3 +1,50 @@
+// Funzione per scaricare il PDF con gestione popup e errori
+function downloadPDF() {
+  var filePath = "res/files/RISK_ASSESSMENT.pdf";
+
+  Swal.fire({
+    title: 'Download in corso...',
+    text: 'Attendi qualche secondo',
+    allowOutsideClick: false,
+    didOpen: () => {
+      Swal.showLoading();
+    }
+  });
+
+  fetch(filePath)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('File non trovato o errore di rete.');
+      }
+      return response.blob();
+    })
+    .then(blob => {
+      var link = document.createElement("a");
+      link.href = window.URL.createObjectURL(blob);
+      link.setAttribute("download", "RISK_ASSESSMENT.pdf");
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      Swal.fire({
+        icon: 'success',
+        title: 'Download completato!',
+        text: 'Il file è stato scaricato correttamente.',
+        confirmButtonColor: '#3085d6'
+      });
+    })
+    .catch(error => {
+      console.error('Errore nel download:', error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Errore!',
+        text: 'Impossibile scaricare il file. Riprova più tardi.',
+        confirmButtonColor: '#d33'
+      });
+    });
+}
+
+
 // Funzione principale per simulare un'analisi di rischio cyber e generare un report tecnico
 function startHack() {
   // Disabilita temporaneamente il pulsante per evitare attivazioni multiple durante la simulazione
@@ -27,45 +74,40 @@ function startHack() {
   ];
 
   // Definizione delle tempistiche per l'intervallo tra i messaggi e il ritardo finale
-  const delayPerLine = 300;      // tempo di attesa tra una riga e l'altra (ms)
-  const extraDelay = 700;        // ritardo extra per rendere la simulazione più fluida
+  const delayPerLine = 300;
+  const extraDelay = 700;
   const totalDuration = txt.length * delayPerLine + extraDelay;
 
-  // Avvio di un popup modale (tramite SweetAlert2) con indicatore di caricamento
   Swal.fire({
     title: 'Simulazione in corso...',
     html: '<b>Cyber Security Analysis</b><br><br>Attendere il completamento della scansione...',
     allowOutsideClick: false,
     showConfirmButton: false,
     didOpen: () => {
-      Swal.showLoading(); // Avvia animazione di caricamento
+      Swal.showLoading();
     }
   });
 
-  // Simulazione di output tecnico riga per riga
-  let log = '';    // Variabile per accumulare il log simulato
-  let i = 0;       // Indice per scorrere l'array dei messaggi
+  let log = '';
+  let i = 0;
 
   const interval = setInterval(() => {
     if (i < txt.length) {
-      log += txt[i] + '\n'; // Aggiunge la riga corrente al log tecnico
+      log += txt[i] + '\n';
       i++;
     } else {
-      clearInterval(interval); // Quando i messaggi terminano, ferma l'intervallo
+      clearInterval(interval);
     }
   }, delayPerLine);
 
-  // Dopo che il log è stato "stampato", calcola i risultati della simulazione
   setTimeout(() => {
-    clearInterval(interval); // Assicura la chiusura dell'intervallo in ogni caso
-    Swal.close();            // Chiude il popup di caricamento
+    clearInterval(interval);
+    Swal.close();
 
-    // Genera valori casuali per probabilità e impatto (range 1-5)
     const prob = Math.floor(Math.random() * 5) + 1;
     const imp = Math.floor(Math.random() * 5) + 1;
-    const rischio = prob * imp; 
+    const rischio = prob * imp;
 
-    // Definizione del livello di rischio e messaggio associato
     let livello, colore, spiegazione;
     if (rischio <= 6) {
       livello = 'BASSO';
@@ -81,7 +123,6 @@ function startHack() {
       spiegazione = "RISCHIO ALTO – Il sistema è vulnerabile. Sono necessarie azioni correttive immediate!!";
     }
 
-    // Costruzione del testo completo del report tecnico
     const logText = `
 SIMULAZIONE CYBERSECURITY RISK - REPORT TECNICO
 ----------------------------------------
@@ -96,11 +137,9 @@ SIMULAZIONE CYBERSECURITY RISK - REPORT TECNICO
 ${log}
 `;
 
-    // Crea un oggetto Blob e genera un URL temporaneo per il download del report
     const blob = new Blob([logText], { type: 'text/plain' });
     const url = URL.createObjectURL(blob);
 
-    // HTML per mostrare un blocco espandibile con il log tecnico + link per scaricare il file
     const logHtml = `
       <details style="margin-top: 15px; text-align: left;">
         <summary style="cursor: pointer; font-weight: bold; color: #007bff;">📂 Visualizza log tecnico</summary>
@@ -122,7 +161,6 @@ ${log}
       </div>
     `;
 
-    // Mostra il popup finale con i risultati della simulazione e il log tecnico
     Swal.fire({
       title: `📊 RISULTATO SIMULAZIONE`,
       html: `
@@ -136,10 +174,9 @@ ${log}
       `,
       icon: 'info',
       confirmButtonText: 'Chiudi',
-      confirmButtonColor: colore 
+      confirmButtonColor: colore
     });
 
-    // Riabilita il pulsante per permettere una nuova simulazione
     btn.disabled = false;
     btn.style.opacity = "1";
   }, totalDuration);
